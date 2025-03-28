@@ -1,5 +1,6 @@
 package com.example.mybatis.service;
 
+import com.example.mybatis.dto.TestCondition;
 import com.example.mybatis.repository.MybatisRepository;
 import com.example.mybatis.vo.Test;
 import jakarta.annotation.PostConstruct;
@@ -15,7 +16,7 @@ public class MybatisServiceImpl implements MybatisService{
     private final MybatisRepository repository;
 
     @Override
-    public List<Test> get() {
-        return repository.get();
+    public List<Test> get(TestCondition condition) {
+        return repository.get(condition);
     }
 }

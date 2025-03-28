@@ -5,5 +5,8 @@
 
     <select id="get" resultType="Test">
         SELECT * FROM MYBATIS_TABLE
+        <if test="useYn != null">
+            WHERE USE_YN = #{useYn}
+        </if>
     </select>
 </mapper>
