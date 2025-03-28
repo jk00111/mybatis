@@ -1,0 +1,30 @@
+spring:
+    application:
+        name: mybatis
+    datasource:
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        url: jdbc:log4jdbc:oracle:thin:@localhost:1521:ORCL
+        username: MYBATIS_USER
+        password: iit3274
+        hikari:
+            maximum-pool-size: 5
+
+logging:
+    level:
+        com:
+            zaxxer:
+                hikari: trace
+                hikari.HikariConfig: debug
+        jdbc: 'off'
+        jdbc.audit: 'off'
+        jdbc.connection: info
+        jdbc.sqltiming: debug
+        root: info
+
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+    mapper-locations: /mapper/**/*.xml
+    type-aliases-package: com.example.mybatis.vo
+    type-handlers-package: com.example.mybatis.config.typeHandler
+
