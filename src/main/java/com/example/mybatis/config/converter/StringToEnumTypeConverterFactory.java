@@ -36,7 +36,7 @@ public class StringToEnumTypeConverterFactory implements ConverterFactory<String
                      return enumConstant;
                  }
             }
-            throw new IllegalArgumentException("not registered EnumeratedValueType : " + source);
+            throw new IllegalArgumentException("not registered EnumerableType : " + source);
         }
     }
 }
