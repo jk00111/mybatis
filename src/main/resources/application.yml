@@ -4,6 +4,10 @@ server:
         accesslog:
             enabled: true
             pattern: "%t %a %r %s (%D microseconds)"
+            encoding: UTF-8
+            rotate: true
+        uri-encoding: UTF-8
+
 
 spring:
     application:
@@ -15,18 +19,6 @@ spring:
         password: iit3274
         hikari:
             maximum-pool-size: 5
-
-logging:
-    level:
-        com:
-            zaxxer:
-                hikari: trace
-                hikari.HikariConfig: debug
-        jdbc: 'off'
-        jdbc.audit: 'off'
-        jdbc.connection: info
-        jdbc.sqltiming: debug
-        root: info
 
 mybatis:
     configuration:

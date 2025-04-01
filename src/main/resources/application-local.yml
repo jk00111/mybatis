@@ -1,7 +1,19 @@
+server:
+    port: 8080
+
 spring:
     config:
         activate:
             on-profile: local
 
-server:
-    port: 8080
+logging:
+    level:
+        com:
+            zaxxer:
+                hikari: trace
+                hikari.HikariConfig: debug
+        jdbc: 'off'
+        jdbc.audit: 'off'
+        jdbc.connection: info
+        jdbc.sqltiming: debug
+        root: info
