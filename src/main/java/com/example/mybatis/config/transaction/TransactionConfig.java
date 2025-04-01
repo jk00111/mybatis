@@ -27,7 +27,7 @@ public class TransactionConfig {
     }
 
     @Bean
-    public TransactionInterceptor transactionAdvice(@Qualifier("dataSourceTransactionManager") TransactionManager transactionManager) {
+    public TransactionInterceptor transactionAdvice(TransactionManager transactionManager) {
         RuleBasedTransactionAttribute txAttribute = new RuleBasedTransactionAttribute();
         txAttribute.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
         txAttribute.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -42,7 +42,7 @@ public class TransactionConfig {
     }
 
     @Bean
-    public Advisor transactionAdviceAdvisor(@Qualifier("dataSourceTransactionManager") TransactionManager transactionManager) {
+    public Advisor transactionAdviceAdvisor(TransactionManager transactionManager) {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("execution(* com.example.mybatis..service.*.*(..))");
         return new DefaultPointcutAdvisor(pointcut, transactionAdvice(transactionManager));
