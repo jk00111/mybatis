@@ -3,10 +3,15 @@
 <mapper namespace="com.example.mybatis.repository.MybatisRepository">
 
 
-    <select id="get" resultType="Test">
+    <select id="get" resultType="TestVo">
         SELECT * FROM MYBATIS_TABLE
         <if test="useYn != null">
             WHERE USE_YN = #{useYn}
         </if>
     </select>
+
+    <insert id="create" parameterType="Test" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO MYBATIS_TABLE (NAME, USE_YN)
+        VALUES (#{name}, #{useYn})
+    </insert>
 </mapper>

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Test {
+public class TestVo {
 
     private Integer id;
     private String name;
