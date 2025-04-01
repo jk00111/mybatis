@@ -4,6 +4,11 @@ server:
         accesslog:
             enabled: true
             pattern: "%t %a %r %s (%D microseconds)"
+            encoding: UTF-8
+            rotate: true
+        uri-encoding: UTF-8
+    shutdown: graceful
+
 
 spring:
     application:
@@ -16,22 +21,10 @@ spring:
         hikari:
             maximum-pool-size: 5
 
-logging:
-    level:
-        com:
-            zaxxer:
-                hikari: trace
-                hikari.HikariConfig: debug
-        jdbc: 'off'
-        jdbc.audit: 'off'
-        jdbc.connection: info
-        jdbc.sqltiming: debug
-        root: info
-
 mybatis:
     configuration:
         map-underscore-to-camel-case: true
     mapper-locations: /mapper/**/*.xml
-    type-aliases-package: com.example.mybatis.vo
+    type-aliases-package: com.example.**.vo,com.example.**.dto,com.example.**.entity
     type-handlers-package: com.example.mybatis.config.typeHandler
 

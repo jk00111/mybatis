@@ -1,4 +1,4 @@
-package com.example.mybatis.config.advcie;
+package com.example.mybatis.config.advice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,14 @@ public class CustomControllerAdvice {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException e) {
+        log.error(e.getCause().toString());
         log.error(e.getMessage());
         return ResponseEntity.internalServerError().body(e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> generalExceptionHandler(RuntimeException e) {
+        log.error(e.getCause().toString());
         log.error(e.getMessage());
         return ResponseEntity.internalServerError().body(e.getMessage());
     }
