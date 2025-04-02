@@ -1,6 +1,6 @@
-package com.example.mybatis.config.converter;
+package com.example.mybatis.common.config.converter;
 
-import com.example.mybatis.config.typeHandler.Enumerable;
+import com.example.mybatis.common.config.typeHandler.Enumerable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 

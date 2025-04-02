@@ -1,6 +1,6 @@
-package com.example.mybatis.enums;
+package com.example.mybatis.common.enums;
 
-import com.example.mybatis.config.typeHandler.Enumerable;
+import com.example.mybatis.common.config.typeHandler.Enumerable;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

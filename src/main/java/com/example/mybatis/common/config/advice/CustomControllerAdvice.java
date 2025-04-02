@@ -1,4 +1,4 @@
-package com.example.mybatis.config.advice;
+package com.example.mybatis.common.config.advice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

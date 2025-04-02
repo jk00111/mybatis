@@ -1,4 +1,4 @@
-package com.example.mybatis.config.typeHandler;
+package com.example.mybatis.common.config.typeHandler;
 
 public interface Enumerable {
 

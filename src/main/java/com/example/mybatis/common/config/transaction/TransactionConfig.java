@@ -1,4 +1,4 @@
-package com.example.mybatis.config.transaction;
+package com.example.mybatis.common.config.transaction;
 
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;

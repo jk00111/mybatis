@@ -1,4 +1,4 @@
-package com.example.mybatis.config.typeHandler;
+package com.example.mybatis.common.config.typeHandler;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
