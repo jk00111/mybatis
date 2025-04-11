@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generalTest.receipt.repository.ItemRepository">
+
+    <select id="findByReceipt" parameterType="ReceiptId">
+        SELECT * FROM MYBATIS_ITEM WHERE RECEIPT_ID = #{id}
+    </select>
+
+    <insert id="create" parameterType="Item">
+        INSERT INTO MYBATIS_ITEM (
+                RECEIPT_ID,
+                ITEM_CODE,
+                NAME
+        ) VALUES (
+                #{receiptId},
+                #{itemCode},
+                #{name}
+                          )
+    </insert>
+
+
+    <delete id="delete" parameterType="Item">
+        DELETE FROM MYBATIS_ITEM
+        WHERE RECEIPT_ID = #{receiptId}
+        AND ITEM_CODE = #{itemCode}
+        AND NAME = #{name}
+    </delete>
+</mapper>

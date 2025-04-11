@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generalTest.request.repository.RequestRepository">
+    <select id="findOne" parameterType="RequestId" resultType="Request">
+        SELECT
+            ID,
+            TITLE,
+            CONTENTS,
+            TEST_TYPE,
+            REQUEST_DATE,
+            REQUESTER_ID,
+            STATUS
+        FROM MYBATIS_REQUEST
+        WHERE ID = #{id}
+    </select>
+
+    <insert id="create" useGeneratedKeys="true" parameterType="Request">
+        INSERT INTO MYBATIS_REQUEST
+        (
+         TITLE,
+         CONTENTS,
+         TEST_TYPE,
+         REQUEST_DATE,
+         REQUESTER_ID,
+         STATUS
+        ) VALUES  (
+                          #{title},
+                          #{contents},
+                          #{testType},
+                          #{requestDate},
+                          #{requesterId},
+                          #{status}
+                           )
+    </insert>
+
+    <update id="update" parameterType="Request">
+        UPDATE MYBATIS_REQUEST
+        SET
+            TITLE = #{title},
+            CONTENTS = #{contents},
+            TEST_TYPE = #{testType},
+            REQUEST_DATE = #{requestDate},
+            REQUESTER_ID = #{requesterId},
+            STATUS = #{status}
+        WHERE ID = #{id}
+    </update>
+</mapper>

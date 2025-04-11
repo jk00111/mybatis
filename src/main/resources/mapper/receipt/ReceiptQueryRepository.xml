@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generalTest.receipt.repository.ReceiptQueryRepository">
+
+    <select id="findOne" parameterType="ReceiptResponseDto">
+        SELECT
+            ID,
+            REQUEST_ID,
+            TITLE,
+            CONTENTS,
+            RECEIPT_DATE,
+            STATUS,
+            RECEPTIONIST_ID
+        FROM MYBATIS_RECEIPT
+        WHERE ID = #{id}
+    </select>
+
+    <select id="findAll" parameterType="ReceiptResponseDto">
+        SELECT
+            ID,
+            REQUEST_ID,
+            TITLE,
+            CONTENTS,
+            RECEIPT_DATE,
+            STATUS,
+            RECEPTIONIST_ID
+        FROM MYBATIS_RECEIPT
+    </select>
+
+    <select id="findItems" parameterType="ReceiptId" resultType="Item">
+        SELECT
+            RECEIPT_ID,
+            ITEM_CODE,
+            NAME
+        FROM MYBATIS_ITEM
+        WHERE RECEIPT_ID = #{id}
+    </select>
+</mapper>

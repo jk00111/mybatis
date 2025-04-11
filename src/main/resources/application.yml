@@ -23,8 +23,10 @@ spring:
 
 mybatis:
     configuration:
+        jdbc-type-for-null: varchar
         map-underscore-to-camel-case: true
     mapper-locations: /mapper/**/*.xml
-    type-aliases-package: com.example.**.vo,com.example.**.dto,com.example.**.entity
+    type-aliases-package: com.example.mybatis.**.vo,com.example.mybatis.**.dto,com.example.mybatis.**.entity
     type-handlers-package: com.example.mybatis.config.typeHandler
+
 
