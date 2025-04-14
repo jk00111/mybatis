@@ -12,8 +12,6 @@ public class ReceiptContents {
 
     private final String title;
     private final String contentsDetail;
-    private LocalDate receiptDate;
-    private Receptionist receptionist;
+    private final LocalDate receiptDate;
 
-    private List<Item> items;
 }

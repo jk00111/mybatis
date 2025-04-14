@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ReceiptContentsDto {
+public class ReceiptRequestDto {
 
     private String title;
     private String contentsDetail;
@@ -20,11 +20,4 @@ public class ReceiptContentsDto {
 
     private List<Item> items;
 
-    public ReceiptContents toContents() {
-        return ReceiptContents.builder()
-                .title(title)
-                .contentsDetail(contentsDetail)
-                .items(items)
-                .build();
-    }
 }

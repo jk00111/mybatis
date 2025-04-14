@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.generalTest.receipt.repository.ReceiptRepository">
 
-    <select id="findOne" parameterType="Receipt">
+    <select id="findOne" parameterType="ReceiptId" resultType="ReceiptEntityDto">
         SELECT
             ID,
             REQUEST_ID,
@@ -15,7 +15,7 @@
         WHERE ID = #{id}
     </select>
 
-    <insert id="create" parameterType="Receipt" useGeneratedKeys="true">
+    <insert id="create" parameterType="ReceiptEntityDto" useGeneratedKeys="true">
         INSERT INTO MYBATIS_RECEIPT (
             REQUEST_ID,
             TITLE,
@@ -33,7 +33,7 @@
                           )
     </insert>
 
-    <update id="update" parameterType="Receipt">
+    <update id="update" parameterType="ReceiptEntityDto">
         UPDATE MYBATIS_RECEIPT
         SET
             REQUEST_ID = #{requestId},

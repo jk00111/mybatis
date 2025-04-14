@@ -1,6 +1,7 @@
 package com.example.mybatis.generalTest.receipt.repository;
 
 import com.example.mybatis.generalTest.receipt.entity.Receipt;
+import com.example.mybatis.generalTest.receipt.entity.ReceiptEntityDto;
 import com.example.mybatis.generalTest.receipt.enums.ReceiptStatus;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptId;
 import org.apache.ibatis.annotations.Arg;
@@ -14,12 +15,12 @@ import java.time.LocalDate;
 @Mapper
 public interface ReceiptRepository {
 
-    void create(Receipt receipt);
+    void create(ReceiptEntityDto receipt);
 
-    void update(Receipt receipt);
+    void update(ReceiptEntityDto receipt);
 
     void delete(ReceiptId id);
 
-    Receipt findOne(ReceiptId id);
+    ReceiptEntityDto findOne(ReceiptId id);
 
 }

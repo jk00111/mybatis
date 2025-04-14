@@ -2,12 +2,15 @@ package com.example.mybatis.generalTest.receipt.controller;
 
 import com.example.mybatis.common.config.model.CommonResponse;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptCondition;
-import com.example.mybatis.generalTest.receipt.dto.ReceiptContentsDto;
+import com.example.mybatis.generalTest.receipt.dto.ReceiptRequestDto;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptResponseDto;
+import com.example.mybatis.generalTest.receipt.dto.ReceiptServiceDto;
 import com.example.mybatis.generalTest.receipt.service.ReceiptQueryService;
 import com.example.mybatis.generalTest.receipt.service.ReceiptService;
+import com.example.mybatis.generalTest.receipt.vo.Item;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptContents;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptId;
+import com.example.mybatis.generalTest.receipt.vo.Receptionist;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +26,9 @@ public class ReceiptController {
     private final ReceiptQueryService queryService;
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommonResponse> update(@RequestBody ReceiptContentsDto dto, @PathVariable Integer id) {
+    public ResponseEntity<CommonResponse> update(@RequestBody ReceiptRequestDto dto, @PathVariable Integer id) {
         ReceiptId receiptId = new ReceiptId(id);
-        ReceiptContents contents = dto.toContents();
-        receiptService.update(receiptId, contents);
+        receiptService.update(receiptId, ReceiptServiceDto.from(dto));
         return ResponseEntity.ok(new CommonResponse());
     }
 
