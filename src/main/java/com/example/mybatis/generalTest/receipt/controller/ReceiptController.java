@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.OperationNotSupportedException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,11 +21,6 @@ public class ReceiptController {
 
     private final ReceiptService receiptService;
     private final ReceiptQueryService queryService;
-
-    @PostMapping
-    public ResponseEntity<CommonResponse> write(@RequestBody ReceiptContentsDto dto) throws OperationNotSupportedException {
-        throw new OperationNotSupportedException("not supported direct-create");
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<CommonResponse> update(@RequestBody ReceiptContentsDto dto, @PathVariable Integer id) {

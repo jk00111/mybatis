@@ -19,7 +19,7 @@ public class Receptionist {
 
     public String name() {
         if (!StringUtils.hasText(name)) {
-            throw new UnsupportedOperationException("empty name");
+            throw new NullPointerException("empty name");
         }
 
         return name;
