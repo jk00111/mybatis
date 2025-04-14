@@ -1,12 +1,10 @@
 package com.example.mybatis.generalTest.receipt.service.impl;
 
-import com.example.mybatis.common.EntityFacade;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptServiceDto;
 import com.example.mybatis.generalTest.receipt.repository.ItemRepository;
 import com.example.mybatis.generalTest.receipt.repository.ReceiptRepository;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptCreateDto;
 import com.example.mybatis.generalTest.receipt.entity.Receipt;
-import com.example.mybatis.generalTest.receipt.repository.ReceiptEntityFacade;
 import com.example.mybatis.generalTest.receipt.service.ReceiptService;
 import com.example.mybatis.generalTest.receipt.vo.Item;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptId;
@@ -27,30 +25,30 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Override
     public void init(ReceiptCreateDto createDto) {
         Receipt receipt = Receipt.ofCreate(createDto);
-        entityFacade().create(receipt);
+        receiptRepository.create(receipt);
     }
 
     @Override
     public void update(ReceiptId id, ReceiptServiceDto dto) {
-        Receipt receipt = entityFacade().findEntity(id);
+        Receipt receipt = receiptRepository.findOne(id);
         receipt.ofUpdate(dto.getContents(), dto.getReceptionist());
 
-        entityFacade().update(receipt);
+        receiptRepository.update(receipt);
         registerItems(id, dto.getItems());
     }
 
     @Override
     public void cancel(ReceiptId id) {
-        Receipt receipt = entityFacade().findEntity(id);
+        Receipt receipt = receiptRepository.findOne(id);
         receipt.cancel();
-        entityFacade().update(receipt);
+        receiptRepository.update(receipt);
     }
 
     @Override
     public void submit(ReceiptId id) {
-        Receipt receipt = entityFacade().findEntity(id);
+        Receipt receipt = receiptRepository.findOne(id);
         receipt.submit();
-        entityFacade().update(receipt);
+        receiptRepository.update(receipt);
     }
 
     private void registerItems(ReceiptId id, List<Item> updated) {
@@ -71,9 +69,5 @@ public class ReceiptServiceImpl implements ReceiptService {
         for (Item item : updatedSet) {
             itemRepository.create(item);
         }
-    }
-
-    private EntityFacade<Receipt, ReceiptId> entityFacade() {
-        return new ReceiptEntityFacade(receiptRepository, itemRepository);
     }
 }

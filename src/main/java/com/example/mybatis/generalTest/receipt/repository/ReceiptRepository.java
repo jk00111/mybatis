@@ -15,12 +15,12 @@ import java.time.LocalDate;
 @Mapper
 public interface ReceiptRepository {
 
-    void create(ReceiptEntityDto receipt);
+    void create(Receipt receipt);
 
-    void update(ReceiptEntityDto receipt);
+    void update(Receipt receipt);
 
     void delete(ReceiptId id);
 
-    ReceiptEntityDto findOne(ReceiptId id);
+    Receipt findOne(ReceiptId id);
 
 }
