@@ -4,13 +4,7 @@
 
     <select id="findOne" parameterType="ReceiptId" resultType="ReceiptEntityDto">
         SELECT
-            ID,
-            REQUEST_ID,
-            TITLE,
-            CONTENTS,
-            RECEIPT_DATE,
-            STATUS,
-            RECEPTIONIST_ID
+            *
         FROM MYBATIS_RECEIPT
         WHERE ID = #{id}
     </select>

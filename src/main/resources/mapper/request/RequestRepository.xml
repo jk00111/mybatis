@@ -3,13 +3,7 @@
 <mapper namespace="com.example.mybatis.generalTest.request.repository.RequestRepository">
     <select id="findOne" parameterType="RequestId" resultType="Request">
         SELECT
-            ID,
-            TITLE,
-            CONTENTS,
-            TEST_TYPE,
-            REQUEST_DATE,
-            REQUESTER_ID,
-            STATUS
+            *
         FROM MYBATIS_REQUEST
         WHERE ID = #{id}
     </select>
