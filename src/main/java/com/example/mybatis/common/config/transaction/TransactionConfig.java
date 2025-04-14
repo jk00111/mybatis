@@ -44,7 +44,7 @@ public class TransactionConfig {
     @Bean
     public Advisor transactionAdviceAdvisor(TransactionManager transactionManager) {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("execution(* com.example.mybatis..service.*.*(..))");
+        pointcut.setExpression("execution(* com.example.mybatis..service.*.*(..)) && !execution(* com.example.mybatis..service.*QueryService.*(..))");
         return new DefaultPointcutAdvisor(pointcut, transactionAdvice(transactionManager));
     }
 }
