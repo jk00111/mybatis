@@ -54,10 +54,10 @@ public class ReceiptServiceImpl implements ReceiptService {
     private void registerItems(ReceiptId id, List<Item> updated) {
         List<Item> registered = itemRepository.findByReceipt(id);
 
-        HashSet<Item> beforeSet = new HashSet<>(registered);
-        HashSet<Item> updatedSet = new HashSet<>(updated);
+        Set<Item> beforeSet = new HashSet<>(registered);
+        Set<Item> updatedSet = new HashSet<>(updated);
 
-        HashSet<Item> intersection = new HashSet<>(beforeSet);
+        Set<Item> intersection = new HashSet<>(beforeSet);
         intersection.retainAll(updatedSet);
 
         beforeSet.removeAll(intersection);

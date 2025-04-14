@@ -19,6 +19,7 @@ public interface ReceiptRepository {
     void update(Receipt receipt);
 
     void delete(ReceiptId id);
+
     Receipt findOne(ReceiptId id);
 
 }
