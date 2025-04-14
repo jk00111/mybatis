@@ -17,6 +17,7 @@ public class ReceiptEntityDto {
     private LocalDate receiptDate;
     private ReceiptStatus status;
     private Integer receptionistId;
+    private String receptionistName;
 
 
     public static ReceiptEntityDto fromCreate(Receipt receipt) {

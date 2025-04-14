@@ -33,4 +33,8 @@ public class Receptionist {
     public static Receptionist ofId(Integer id) {
         return new Receptionist(id, null);
     }
+
+    public static Receptionist of(Integer id, String name) {
+        return new Receptionist(id, name);
+    }
 }

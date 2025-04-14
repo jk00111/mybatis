@@ -48,7 +48,7 @@ public class ReceiptEntityFacade implements EntityFacade<Receipt, ReceiptId> {
                         .receiptDate(dto.getReceiptDate())
                         .build())
                 .status(dto.getStatus())
-                .receptionist(Receptionist.ofId(dto.getReceptionistId()))
+                .receptionist(Receptionist.of(dto.getReceptionistId(), dto.getReceptionistName()))
                 .items(items)
                 .build();
     }
