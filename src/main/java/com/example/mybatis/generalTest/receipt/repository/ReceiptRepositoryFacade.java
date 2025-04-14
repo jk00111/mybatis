@@ -10,7 +10,9 @@ import com.example.mybatis.generalTest.request.vo.RequestId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Component
@@ -31,6 +33,7 @@ public class ReceiptRepositoryFacade implements ReceiptRepository {
     public void update(Receipt receipt) {
         ReceiptEntityDto entityDto = ReceiptEntityDto.fromUpdate(receipt);
         receiptMapper.update(entityDto);
+        registerItems(receipt.getId(), receipt.getItems());
     }
 
     @Override
@@ -44,6 +47,26 @@ public class ReceiptRepositoryFacade implements ReceiptRepository {
         List<Item> items = itemRepository.findByReceipt(id);
 
         return makeEntity(entityDto, items);
+    }
+
+    private void registerItems(ReceiptId id, List<Item> updated) {
+        List<Item> registered = itemRepository.findByReceipt(id);
+
+        Set<Item> beforeSet = new HashSet<>(registered);
+        Set<Item> updatedSet = new HashSet<>(updated);
+
+        Set<Item> intersection = new HashSet<>(beforeSet);
+        intersection.retainAll(updatedSet);
+
+        beforeSet.removeAll(intersection);
+        for (Item item : beforeSet) {
+            itemRepository.delete(item);
+        }
+
+        updatedSet.removeAll(intersection);
+        for (Item item : updatedSet) {
+            itemRepository.create(item);
+        }
     }
 
     private Receipt makeEntity(ReceiptEntityDto dto, List<Item> items) {
