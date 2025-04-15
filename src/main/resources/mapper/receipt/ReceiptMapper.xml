@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generalTest.receipt.repository.ReceiptMapper">
+
+    <select id="findOne" parameterType="ReceiptId" resultType="ReceiptEntityDto">
+        SELECT
+            R.*,
+            U.NAME AS RECEPTIONIST_NAME
+        FROM MYBATIS_RECEIPT R
+        LEFT JOIN MYBATIS_TABLE U
+        ON R.RECEPTIONIST_ID = U.ID
+        WHERE R.ID = #{id}
+    </select>
+
+    <insert id="create" parameterType="ReceiptEntityDto" useGeneratedKeys="true">
+        INSERT INTO MYBATIS_RECEIPT (
+            REQUEST_ID,
+            TITLE,
+            CONTENTS,
+            RECEIPT_DATE,
+            STATUS,
+            RECEPTIONIST_ID
+        ) VALUES (
+                #{requestId},
+                #{title},
+                #{contents},
+                #{receiptDate},
+                #{status},
+                #{receptionistId}
+                          )
+    </insert>
+
+    <update id="update" parameterType="ReceiptEntityDto">
+        UPDATE MYBATIS_RECEIPT
+        SET
+            REQUEST_ID = #{requestId},
+            TITLE = #{title},
+            CONTENTS = #{contents},
+            RECEIPT_DATE = #{receiptDate},
+            STATUS = #{status},
+            RECEPTIONIST_ID = #{receptionistId}
+        WHERE ID = #{id}
+    </update>
+</mapper>
