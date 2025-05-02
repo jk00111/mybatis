@@ -1,6 +1,8 @@
 package com.example.mybatis.generalTest.receipt.vo;
 
-public class ReceiptId {
+import com.example.mybatis.common.IdentityValue;
+
+public class ReceiptId implements IdentityValue {
 
     private final Integer id;
 
@@ -8,6 +10,7 @@ public class ReceiptId {
         this.id = id;
     }
 
+    @Override
     public Integer get() {
         return id;
     }

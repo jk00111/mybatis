@@ -16,23 +16,23 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/test/general/receipts")
-public class ReceiptController {
+@RequestMapping("/test/general/receipts/approval")
+public class ReceiptApprovalController {
 
     private final ReceiptService receiptService;
     private final ReceiptQueryService queryService;
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CommonResponse> update(@RequestBody ReceiptRequestDto dto, @PathVariable Integer id) {
+    @PostMapping("/{id}/approve")
+    public ResponseEntity<CommonResponse> approve(@PathVariable Integer id) {
         ReceiptId receiptId = new ReceiptId(id);
-        receiptService.update(receiptId, ReceiptServiceDto.from(dto));
+        receiptService.submit(receiptId);
         return ResponseEntity.ok(new CommonResponse());
     }
 
-    @PostMapping("/{id}/submit")
-    public ResponseEntity<CommonResponse> submit(@PathVariable Integer id) {
+    @PostMapping("/{id}/review")
+    public ResponseEntity<CommonResponse> review(@PathVariable Integer id) {
         ReceiptId receiptId = new ReceiptId(id);
-        receiptService.submit(receiptId);
+        receiptService.cancel(receiptId);
         return ResponseEntity.ok(new CommonResponse());
     }
 

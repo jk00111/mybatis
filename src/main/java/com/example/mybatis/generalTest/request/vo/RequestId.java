@@ -1,6 +1,8 @@
 package com.example.mybatis.generalTest.request.vo;
 
-public class RequestId {
+import com.example.mybatis.common.IdentityValue;
+
+public class RequestId implements IdentityValue {
 
     private final Integer id;
 
@@ -12,6 +14,7 @@ public class RequestId {
         this.id = id;
     }
 
+    @Override
     public Integer get() {
         return id;
     }
