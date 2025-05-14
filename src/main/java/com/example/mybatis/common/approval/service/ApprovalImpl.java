@@ -16,7 +16,7 @@ public class ApprovalImpl implements Approval {
 
     @Override
     public ApprovalResult escalate(ApprovalEscalateInfo escalateInfo) {
-        ApprovalEntity entity = ApprovalEntity.escalate(escalateInfo);
+        ApprovalEntity entity = ApprovalEntity.from(escalateInfo);
         approvalRepository.create(entity);
 
         return new ApprovalResult(entity.id(), entity.isFinish());
@@ -38,5 +38,12 @@ public class ApprovalImpl implements Approval {
         approvalRepository.update(entity);
 
         return new ApprovalResult(entity.id(), entity.isFinish());
+    }
+
+    @Override
+    public ApprovalResult cancel(ApprovalSubmit submit) {
+        ApprovalEntity entity = approvalRepository.findOne(submit.approvalId());
+
+        return null;
     }
 }

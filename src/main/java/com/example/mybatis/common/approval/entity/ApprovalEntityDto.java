@@ -1,10 +1,10 @@
 package com.example.mybatis.common.approval.entity;
 
 import com.example.mybatis.common.approval.approvalLine.ApprovalLine;
-import com.example.mybatis.common.approval.approvalLine.ApprovalUnit;
-import com.example.mybatis.common.approval.vo.ApprovalEscalateInfo;
+import com.example.mybatis.common.approval.enums.ApprovalAction;
+import com.example.mybatis.common.approval.enums.ApprovalRole;
+import com.example.mybatis.common.approval.user.ApprovalUser;
 import com.example.mybatis.common.approval.vo.ApprovalId;
-import com.example.mybatis.common.approval.vo.ApprovalSubmit;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +13,22 @@ import lombok.Setter;
 public class ApprovalEntityDto {
 
     private Integer id;
-    private String contents;
     private Integer requesterId;
+    private String requesterName;
+    private ApprovalRole requesterRole;
+    private ApprovalAction requesterAction;
+
+    public ApprovalEntityDto(Integer id, Integer requesterId, ApprovalRole requesterRole, ApprovalAction requesterAction) {
+        this.id = id;
+        this.requesterId = requesterId;
+        this.requesterRole = requesterRole;
+        this.requesterAction = requesterAction;
+    }
 
     public static ApprovalEntityDto from(ApprovalEntity entity) {
-        return null;
+        ApprovalId approvalId = entity.getId();
+        ApprovalUser requester = entity.getRequester();
+
+        return new ApprovalEntityDto(approvalId.getId(), requester.id(), entity.getRequester().role(), entity.getRequester().action());
     }
 }

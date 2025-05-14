@@ -2,8 +2,11 @@ package com.example.mybatis.common.approval.enums;
 
 import com.example.mybatis.common.config.typeHandler.Enumerable;
 
-public enum ApprovalDecision implements Enumerable {
+public enum ApprovalAction implements Enumerable {
 
+    ESCALATE,
+
+    CANCEL,
 
     APPROVE,
 
@@ -11,7 +14,7 @@ public enum ApprovalDecision implements Enumerable {
 
     REJECT,
 
-    NOT,
+    NONE,
     ;
 
 

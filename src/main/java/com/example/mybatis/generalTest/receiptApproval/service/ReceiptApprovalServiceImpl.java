@@ -15,7 +15,7 @@ public class ReceiptApprovalServiceImpl implements ReceiptApprovalService {
     @Override
     public void escalate(ReceiptEscalateDto dto) {
         approval.escalate(
-                new ApprovalEscalateInfo.builder()
+                new ApprovalEscalateInfo.Builder()
                         .identityValue(dto.getReceiptId())
                         .requester(dto.getRequester())
                         .line(dto.getLine())

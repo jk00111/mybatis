@@ -1,6 +1,9 @@
 package com.example.mybatis.common.approval.vo;
 
 import com.example.mybatis.common.IdentityValue;
+import com.example.mybatis.common.approval.user.ApprovalRequester;
+import com.example.mybatis.common.approval.user.ApprovalUser;
+import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.entity.User;
 import lombok.Getter;
 
@@ -12,40 +15,42 @@ public class ApprovalEscalateInfo {
 
     private final IdentityValue identityValue;
     private final ApprovalUser requester;
-    private final List<ApprovalUser> line;
+    private final List<ApprovalDecider> line;
 
-    private ApprovalEscalateInfo(builder builder) {
+    private ApprovalEscalateInfo(Builder builder) {
         this.identityValue = builder.identityValue;
         this.requester = builder.requester;
         this.line = builder.line;
     }
 
-    public static class builder {
+    public static class Builder {
         private IdentityValue identityValue;
         private ApprovalUser requester;
-        private List<ApprovalUser> line = new ArrayList<>();
+        private final List<ApprovalDecider> line = new ArrayList<>();
 
 
-        public builder identityValue(IdentityValue identityValue) {
+        public Builder identityValue(IdentityValue identityValue) {
             this.identityValue = identityValue;
             return this;
         }
 
-        public builder requester(User user) {
-            this.requester = convertApprovalUser(user);
+        public Builder requester(User user) {
+            this.requester = ApprovalUser.requestFrom(user);
             return this;
         }
 
 
-        public builder line(List<User> users) {
-            List<ApprovalUser> approvalUsers = new ArrayList<>();
-
+        public Builder line(User... users) {
             for (User user : users) {
-                approvalUsers.add(convertApprovalUser(user));
+                line.add(convertDecideUser(user));
             }
 
-            if (!users.isEmpty()) {
-                line = approvalUsers;
+            return this;
+        }
+
+        public Builder line(List<User> users) {
+            for (User user : users) {
+                line.add(convertDecideUser(user));
             }
 
             return this;
@@ -56,8 +61,8 @@ public class ApprovalEscalateInfo {
             return new ApprovalEscalateInfo(this);
         }
 
-        private ApprovalUser convertApprovalUser(User user) {
-            return ApprovalUser.of(user);
+        private ApprovalDecider convertDecideUser(User user) {
+            return ApprovalUser.fromEscalate(user);
         }
 
         private void validateNotNull() {

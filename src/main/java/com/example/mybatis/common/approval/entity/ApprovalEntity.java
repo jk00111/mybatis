@@ -1,11 +1,13 @@
 package com.example.mybatis.common.approval.entity;
 
 import com.example.mybatis.common.approval.approvalLine.ApprovalLine;
-import com.example.mybatis.common.approval.approvalLine.ApprovalUnit;
+import com.example.mybatis.common.approval.approvalLine.OrderlessApprovalLine;
+import com.example.mybatis.common.approval.user.ApprovalUser;
+import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.approval.vo.ApprovalEscalateInfo;
 import com.example.mybatis.common.approval.vo.ApprovalId;
 import com.example.mybatis.common.approval.vo.ApprovalSubmit;
-import com.example.mybatis.common.approval.vo.ApprovalUser;
+import com.example.mybatis.common.approval.user.ApprovalRequester;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,23 +19,29 @@ public class ApprovalEntity {
 
     private ApprovalId id;
     private ApprovalUser requester;
-    private ApprovalUnit approvalUnit;
+    private ApprovalLine approvalLine;
 
-    public static ApprovalEntity escalate(ApprovalEscalateInfo info) {
-        ApprovalEntity entity = new ApprovalEntity();
-        ApprovalUnit approvalLine = ApprovalUnit.makeLine(info.getLine());
-        entity.setRequester(info.getRequester());
-        entity.setApprovalUnit(approvalLine);
-        return entity;
+    public ApprovalEntity(ApprovalId id, ApprovalRequester requester, ApprovalLine approvalLine) {
+        this.id = id;
+        this.requester = requester;
+        this.approvalLine = approvalLine;
     }
 
+    public ApprovalEntity() {
+
+    }
 
     public void approve(ApprovalSubmit submit) {
-        approvalUnit.approve(submit.submitUser());
+        ApprovalDecider approver = approvalLine.findApprovalDecider(submit.submitUser());
+        approver.approve();
     }
 
     public void reject(ApprovalSubmit submit) {
-        approvalUnit.reject(submit.submitUser());
+        ApprovalDecider approver = approvalLine.findApprovalDecider(submit.submitUser());
+        approver.reject();
+    }
+
+    public void cancel() {
     }
 
     public ApprovalId id() {
@@ -41,15 +49,27 @@ public class ApprovalEntity {
     }
 
     public boolean isFinish() {
-        return approvalUnit.isFinish();
+        return approvalLine.isFinish();
     }
 
-    public static ApprovalEntity of(ApprovalEntityDto entityDto, List<ApprovalUnit> units) {
+    public static ApprovalEntity from(ApprovalEscalateInfo info) {
         ApprovalEntity entity = new ApprovalEntity();
-        entity.setId(ApprovalId.of(entityDto.getId()));
-
-        ApprovalLine approvalLine = new ApprovalLine(units);
-        entity.setApprovalUnit(approvalLine);
+        List<ApprovalDecider> line = info.getLine();
+        entity.setRequester(info.getRequester());
+        entity.setApprovalLine(new OrderlessApprovalLine(line));
         return entity;
+    }
+
+    public static ApprovalEntity of(ApprovalEntityDto entityDto, List<ApprovalDecider> line) {
+        return  new ApprovalEntity(
+                    new ApprovalId(entityDto.getId()),
+                    new ApprovalRequester(
+                        entityDto.getRequesterId(),
+                        entityDto.getRequesterName(),
+                        entityDto.getRequesterRole(),
+                        entityDto.getRequesterAction()
+                            ),
+                    new OrderlessApprovalLine(line)
+                );
     }
 }
