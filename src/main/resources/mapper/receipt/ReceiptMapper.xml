@@ -19,14 +19,16 @@
             CONTENTS,
             RECEIPT_DATE,
             STATUS,
-            RECEPTIONIST_ID
+            RECEPTIONIST_ID,
+            APPROVAL_ID
         ) VALUES (
                 #{requestId},
                 #{title},
                 #{contents},
                 #{receiptDate},
                 #{status},
-                #{receptionistId}
+                #{receptionistId},
+                  #{approvalId}
                           )
     </insert>
 
@@ -38,7 +40,8 @@
             CONTENTS = #{contents},
             RECEIPT_DATE = #{receiptDate},
             STATUS = #{status},
-            RECEPTIONIST_ID = #{receptionistId}
+            RECEPTIONIST_ID = #{receptionistId},
+            APPROVAL_ID = #{approvalId}
         WHERE ID = #{id}
     </update>
 </mapper>

@@ -1,21 +1,22 @@
 package com.example.mybatis.common.approval.repository;
 
-import com.example.mybatis.common.approval.user.ApprovalUser;
 import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.approval.vo.ApprovalId;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface ApprovalLineMapper {
 
     List<ApprovalDecider> findByApprovalId(ApprovalId approvalId);
 
-    void create(ApprovalUser user);
+    void create(ApprovalDecider user);
 
-    void update(ApprovalUser user);
+    void update(ApprovalDecider user);
 
-    void delete(ApprovalUser user);
+    void delete(ApprovalDecider user);
 
 }

@@ -2,7 +2,6 @@ package com.example.mybatis.common.approval.vo;
 
 import com.example.mybatis.common.IdentityValue;
 import com.example.mybatis.common.approval.user.ApprovalRequester;
-import com.example.mybatis.common.approval.user.ApprovalUser;
 import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.entity.User;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import java.util.List;
 public class ApprovalEscalateInfo {
 
     private final IdentityValue identityValue;
-    private final ApprovalUser requester;
+    private final ApprovalRequester requester;
     private final List<ApprovalDecider> line;
 
     private ApprovalEscalateInfo(Builder builder) {
@@ -25,7 +24,7 @@ public class ApprovalEscalateInfo {
 
     public static class Builder {
         private IdentityValue identityValue;
-        private ApprovalUser requester;
+        private ApprovalRequester requester;
         private final List<ApprovalDecider> line = new ArrayList<>();
 
 
@@ -35,7 +34,7 @@ public class ApprovalEscalateInfo {
         }
 
         public Builder requester(User user) {
-            this.requester = ApprovalUser.requestFrom(user);
+            this.requester = ApprovalRequester.from(user);
             return this;
         }
 
@@ -62,7 +61,7 @@ public class ApprovalEscalateInfo {
         }
 
         private ApprovalDecider convertDecideUser(User user) {
-            return ApprovalUser.fromEscalate(user);
+            return ApprovalDecider.fromEscalate(user);
         }
 
         private void validateNotNull() {

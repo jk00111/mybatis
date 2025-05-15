@@ -3,6 +3,7 @@ package com.example.mybatis.common.approval.service;
 import com.example.mybatis.common.approval.vo.ApprovalEscalateInfo;
 import com.example.mybatis.common.approval.vo.ApprovalResult;
 import com.example.mybatis.common.approval.vo.ApprovalSubmit;
+import com.example.mybatis.common.approval.vo.CancelRequest;
 
 public interface Approval {
 
@@ -12,6 +13,6 @@ public interface Approval {
 
     ApprovalResult reject(ApprovalSubmit submit);
 
-    ApprovalResult cancel(ApprovalSubmit submit);
+    ApprovalResult cancel(CancelRequest cancelRequest);
 
 }

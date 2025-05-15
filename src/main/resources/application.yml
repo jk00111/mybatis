@@ -26,7 +26,7 @@ mybatis:
         jdbc-type-for-null: varchar
         map-underscore-to-camel-case: true
     mapper-locations: /mapper/**/*.xml
-    type-aliases-package: com.example.mybatis.**.vo,com.example.mybatis.**.dto,com.example.mybatis.**.entity
+    type-aliases-package: com.example.mybatis.**.vo,com.example.mybatis.**.dto,com.example.mybatis.**.entity,com.example.mybatis.**.user
     type-handlers-package: com.example.mybatis.config.typeHandler
 
 

@@ -2,50 +2,21 @@ package com.example.mybatis.common.approval.user;
 
 import com.example.mybatis.common.approval.enums.ApprovalAction;
 import com.example.mybatis.common.approval.enums.ApprovalRole;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import com.example.mybatis.common.entity.User;
 
-@Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ApprovalRequester implements ApprovalUser {
+public interface ApprovalRequester {
 
-    @EqualsAndHashCode.Include
-    private Integer approvalId;
+    Integer id();
 
-    @EqualsAndHashCode.Include
-    private Integer id;
-    private String name;
-    private ApprovalRole role;
-    private ApprovalAction action;
+    String name();
 
-    public ApprovalRequester(Integer id, String name, ApprovalRole role, ApprovalAction action) {
-        this.id = id;
-        this.name = name;
-        this.role = role;
-        this.action = action;
-    }
+    ApprovalRole role();
 
-    @Override
-    public Integer id() {
-        return id;
-    }
+    ApprovalAction action();
 
-    @Override
-    public String name() {
-        return name;
-    }
+    void cancel();
 
-    @Override
-    public ApprovalRole role() {
-        return role;
-    }
-
-    @Override
-    public ApprovalAction action() {
-        return action;
-    }
-
-    public void cancel() {
-        this.action = ApprovalAction.CANCEL;
+    static ApprovalRequester from(User user) {
+        return new SimpleApprovalRequester(user.getId(), user.getName(), ApprovalRole.REQUESTER, ApprovalAction.ESCALATE);
     }
 }

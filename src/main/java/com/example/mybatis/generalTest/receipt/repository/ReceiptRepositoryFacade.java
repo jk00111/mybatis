@@ -1,5 +1,6 @@
 package com.example.mybatis.generalTest.receipt.repository;
 
+import com.example.mybatis.common.approval.vo.ApprovalId;
 import com.example.mybatis.generalTest.receipt.entity.Receipt;
 import com.example.mybatis.generalTest.receipt.entity.ReceiptEntityDto;
 import com.example.mybatis.generalTest.receipt.vo.Item;
@@ -81,6 +82,7 @@ public class ReceiptRepositoryFacade implements ReceiptRepository {
                 .status(dto.getStatus())
                 .receptionist(Receptionist.of(dto.getReceptionistId(), dto.getReceptionistName()))
                 .items(items)
+                .approvalId(new ApprovalId(dto.getApprovalId()))
                 .build();
     }
 }

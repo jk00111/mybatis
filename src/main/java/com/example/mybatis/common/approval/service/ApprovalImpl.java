@@ -5,6 +5,7 @@ import com.example.mybatis.common.approval.repository.ApprovalRepository;
 import com.example.mybatis.common.approval.vo.ApprovalEscalateInfo;
 import com.example.mybatis.common.approval.vo.ApprovalResult;
 import com.example.mybatis.common.approval.vo.ApprovalSubmit;
+import com.example.mybatis.common.approval.vo.CancelRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class ApprovalImpl implements Approval {
 
     @Override
     public ApprovalResult escalate(ApprovalEscalateInfo escalateInfo) {
-        ApprovalEntity entity = ApprovalEntity.from(escalateInfo);
+        ApprovalEntity entity = ApprovalEntity.escalate(escalateInfo);
         approvalRepository.create(entity);
 
         return new ApprovalResult(entity.id(), entity.isFinish());
@@ -41,9 +42,11 @@ public class ApprovalImpl implements Approval {
     }
 
     @Override
-    public ApprovalResult cancel(ApprovalSubmit submit) {
-        ApprovalEntity entity = approvalRepository.findOne(submit.approvalId());
+    public ApprovalResult cancel(CancelRequest cancelRequest) {
+        ApprovalEntity entity = approvalRepository.findOne(cancelRequest.getApprovalId());
+        entity.cancel();
+        approvalRepository.update(entity);
 
-        return null;
+        return new ApprovalResult(entity.id(), entity.isFinish());
     }
 }

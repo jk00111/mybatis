@@ -1,6 +1,5 @@
 package com.example.mybatis.common.approval.vo;
 
-import com.example.mybatis.common.approval.user.ApprovalUser;
 import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.entity.User;
 
@@ -14,13 +13,10 @@ public class ApprovalSubmit {
         this.submitUser = submitUser;
     }
 
-    public static ApprovalSubmit ofApprove(ApprovalId id, User user) {
-        return new ApprovalSubmit(id, ApprovalUser.deciderOf(user, id.getId()));
+    public static ApprovalSubmit of(ApprovalId id, User user) {
+        return new ApprovalSubmit(id, ApprovalDecider.of(user, id.getId()));
     }
 
-    public static ApprovalSubmit ofReject(ApprovalId id, User user) {
-        return new ApprovalSubmit(id, ApprovalUser.deciderOf(user, id.getId()));
-    }
 
     public ApprovalId approvalId() {
         return approvalId;

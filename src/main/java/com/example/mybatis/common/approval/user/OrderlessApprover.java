@@ -13,26 +13,34 @@ public class OrderlessApprover implements ApprovalDecider {
      private Integer approvalId;
 
      @EqualsAndHashCode.Include
-     private Integer id;
+     private Integer userId;
      private String name;
      private ApprovalRole role;
      private ApprovalAction action;
 
      private boolean updateFlag = false;
 
-     public OrderlessApprover(Integer approvalId, Integer id, String name, ApprovalRole role, ApprovalAction action) {
+     protected OrderlessApprover() {
+     }
+
+     public OrderlessApprover(Integer approvalId, Integer userId, String name, ApprovalRole role, ApprovalAction action) {
           this.approvalId = approvalId;
-          this.id = id;
+          this.userId = userId;
           this.name = name;
           this.role = role;
           this.action = action;
      }
 
-     public OrderlessApprover(Integer id, String name, ApprovalRole role, ApprovalAction action) {
-          this.id = id;
+     public OrderlessApprover(Integer userId, String name, ApprovalRole role, ApprovalAction action) {
+          this.userId = userId;
           this.name = name;
           this.role = role;
           this.action = action;
+     }
+
+     public OrderlessApprover(Integer approvalId, Integer userId) {
+          this.approvalId = approvalId;
+          this.userId = userId;
      }
 
      @Override
@@ -59,7 +67,7 @@ public class OrderlessApprover implements ApprovalDecider {
 
      @Override
      public Integer id() {
-          return id;
+          return userId;
      }
 
      @Override

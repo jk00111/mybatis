@@ -14,6 +14,10 @@ public class OrderlessApprovalLine implements ApprovalLine {
 
     @Override
     public boolean isFinish() {
+        if (isRejected()) {
+            return true;
+        }
+
         for (ApprovalDecider decider : line) {
             if (ApprovalAction.NONE.equals(decider.action())) {
                 return false;
@@ -21,6 +25,17 @@ public class OrderlessApprovalLine implements ApprovalLine {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean isRejected() {
+        for (ApprovalDecider decider : line) {
+            if (ApprovalAction.REJECT.equals(decider.action())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -34,12 +49,12 @@ public class OrderlessApprovalLine implements ApprovalLine {
     }
 
     @Override
-    public List<ApprovalDecider> findAll() {
+    public List<ApprovalDecider> getAll() {
         return line;
     }
 
     @Override
-    public ApprovalDecider findApprovalDecider(ApprovalDecider user) {
+    public ApprovalDecider findDeciderInLine(ApprovalDecider user) {
         for (ApprovalDecider approvalDecider : line) {
             if (approvalDecider.equals(user)) {
                 return approvalDecider;

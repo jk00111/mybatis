@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.common.approval.repository.ApprovalLineMapper">
+
+    <select id="findByApprovalId" parameterType="ApprovalId" resultType="OrderlessApprover">
+        SELECT
+            AL.APPROVAL_ID,
+            AL.USER_ID,
+            AL.ROLE,
+            AL.ACTION,
+            U.NAME
+        FROM MYBATIS_APPROVAL_LINE AL
+        LEFT JOIN MYBATIS_TABLE U
+            ON U.ID = AL.USER_ID
+        WHERE AL.APPROVAL_ID = #{id}
+    </select>
+
+    <insert id="create" parameterType="OrderlessApprover" useGeneratedKeys="true">
+        INSERT INTO MYBATIS_APPROVAL_LINE
+        VALUES (
+                #{approvalId},
+                #{userId},
+                #{role},
+                #{action}
+            )
+    </insert>
+
+    <update id="update" parameterType="OrderlessApprover">
+        UPDATE MYBATIS_APPROVAL_LINE
+        SET
+            ROLE = #{role},
+            ACTION = #{action}
+        WHERE APPROVAL_ID = #{approvalId}
+        AND USER_ID = #{userId}
+    </update>
+</mapper>

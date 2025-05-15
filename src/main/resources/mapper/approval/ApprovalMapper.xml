@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.common.approval.repository.ApprovalMapper">
+
+    <select id="findOne" parameterType="ApprovalId" resultType="ApprovalEntityDto">
+        SELECT A.ID,
+               A.REQUESTER_ID,
+               A.ROLE AS REQUESTER_ROLE,
+               A.ACTION AS REQUESTER_ACTION,
+               U.NAME AS REQUESTER_NAME
+        FROM MYBATIS_APPROVAL A
+        LEFT JOIN MYBATIS_TABLE U
+            ON U.ID = A.REQUESTER_ID
+        WHERE A.ID = #{id}
+    </select>
+
+    <insert id="create" parameterType="ApprovalEntityDto" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO MYBATIS_APPROVAL
+        (
+            REQUESTER_ID,
+            ROLE,
+            ACTION
+        ) VALUES (
+                #{requesterId},
+                #{requesterRole},
+                #{requesterAction}
+            )
+    </insert>
+
+    <update id="update" parameterType="ApprovalEntityDto">
+        UPDATE MYBATIS_APPROVAL
+        SET
+            REQUESTER_ID = #{requesterId},
+            ROLE = #{requesterRole},
+            ACTION = #{requesterAction}
+        WHERE ID = #{id}
+    </update>
+</mapper>

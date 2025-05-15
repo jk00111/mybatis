@@ -1,55 +1,51 @@
 package com.example.mybatis.generalTest.receipt.controller;
 
 import com.example.mybatis.common.config.model.CommonResponse;
-import com.example.mybatis.generalTest.receipt.dto.ReceiptCondition;
-import com.example.mybatis.generalTest.receipt.dto.ReceiptRequestDto;
-import com.example.mybatis.generalTest.receipt.dto.ReceiptResponseDto;
-import com.example.mybatis.generalTest.receipt.dto.ReceiptServiceDto;
-import com.example.mybatis.generalTest.receipt.service.ReceiptQueryService;
-import com.example.mybatis.generalTest.receipt.service.ReceiptService;
+import com.example.mybatis.common.entity.User;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptId;
+import com.example.mybatis.generalTest.receiptApproval.dto.ReceiptApprovalSubmitDto;
+import com.example.mybatis.generalTest.receiptApproval.dto.ReceiptEscalateDto;
+import com.example.mybatis.generalTest.receiptApproval.service.ReceiptApprovalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/test/general/receipts/approval")
+@RequestMapping("/test/general/receipts")
 public class ReceiptApprovalController {
 
-    private final ReceiptService receiptService;
-    private final ReceiptQueryService queryService;
+    private final ReceiptApprovalService approvalService;
+
+    @PostMapping("/{id}/escalate")
+    public ResponseEntity<CommonResponse> escalate(@RequestBody ReceiptEscalateDto dto, @PathVariable Integer id) {
+        dto.setReceiptId(new ReceiptId(id));
+        dto.setRequester(getSessionUser());
+        approvalService.escalate(dto);
+        return ResponseEntity.ok(new CommonResponse());
+    }
 
     @PostMapping("/{id}/approve")
     public ResponseEntity<CommonResponse> approve(@PathVariable Integer id) {
-        ReceiptId receiptId = new ReceiptId(id);
-        receiptService.submit(receiptId);
+        approvalService.approve(new ReceiptApprovalSubmitDto(new ReceiptId(id), getApprover()));
         return ResponseEntity.ok(new CommonResponse());
     }
 
-    @PostMapping("/{id}/review")
-    public ResponseEntity<CommonResponse> review(@PathVariable Integer id) {
-        ReceiptId receiptId = new ReceiptId(id);
-        receiptService.cancel(receiptId);
+    @PostMapping("/{id}/reject")
+    public ResponseEntity<CommonResponse> reject(@PathVariable Integer id) {
+        approvalService.reject(new ReceiptApprovalSubmitDto(new ReceiptId(id), getRejecter()));
         return ResponseEntity.ok(new CommonResponse());
     }
 
-    @PostMapping("/{id}/cancel")
-    public ResponseEntity<CommonResponse> cancel(@PathVariable Integer id) {
-        ReceiptId receiptId = new ReceiptId(id);
-        receiptService.cancel(receiptId);
-        return ResponseEntity.ok(new CommonResponse());
+    private User getSessionUser() {
+        return User.builder().id(1).name("kim").build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ReceiptResponseDto> findOne(@PathVariable Integer id) {
-        return ResponseEntity.ok(queryService.findOne(new ReceiptId(id)));
+    private User getApprover() {
+        return User.builder().id(21).name("lee").build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<ReceiptResponseDto>> findAll(ReceiptCondition condition) {
-        return ResponseEntity.ok(queryService.findAll(condition));
+    private User getRejecter() {
+        return User.builder().id(42).name("me").build();
     }
 }

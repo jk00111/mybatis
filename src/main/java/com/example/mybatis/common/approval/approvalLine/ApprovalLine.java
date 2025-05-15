@@ -10,10 +10,12 @@ public interface ApprovalLine {
 
     void remove(ApprovalDecider user);
 
-    List<ApprovalDecider> findAll();
+    List<ApprovalDecider> getAll();
 
-    ApprovalDecider findApprovalDecider(ApprovalDecider user);
+    ApprovalDecider findDeciderInLine(ApprovalDecider user);
 
     boolean isFinish();
+
+    boolean isRejected();
 
 }

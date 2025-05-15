@@ -10,8 +10,6 @@ public enum ApprovalAction implements Enumerable {
 
     APPROVE,
 
-    REVIEW,
-
     REJECT,
 
     NONE,

@@ -10,7 +10,6 @@ public enum ApprovalRole implements Enumerable {
 
     APPROVER,
 
-    REVIEWER,
     ;
 
     @Override

@@ -18,6 +18,7 @@ public class ReceiptEntityDto {
     private ReceiptStatus status;
     private Integer receptionistId;
     private String receptionistName;
+    private Integer approvalId;
 
 
     public static ReceiptEntityDto fromCreate(Receipt receipt) {
@@ -36,6 +37,7 @@ public class ReceiptEntityDto {
         entityDto.setReceiptDate(receipt.getContents().getReceiptDate());
         entityDto.setStatus(receipt.getStatus());
         entityDto.setReceptionistId(receipt.getReceptionist().id());
+        entityDto.setApprovalId(receipt.getApprovalId().getId());
         return entityDto;
     }
 }

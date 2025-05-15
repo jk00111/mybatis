@@ -1,5 +1,6 @@
 package com.example.mybatis.generalTest.receipt.entity;
 
+import com.example.mybatis.common.approval.vo.ApprovalId;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptCreateDto;
 import com.example.mybatis.generalTest.receipt.dto.ReceiptServiceDto;
 import com.example.mybatis.generalTest.receipt.enums.ReceiptStatus;
@@ -24,6 +25,7 @@ public class Receipt {
     private ReceiptStatus status;
     private Receptionist receptionist;
     private List<Item> items;
+    private ApprovalId approvalId;
 
     public void updateFrom(ReceiptServiceDto dto) {
         this.contents = dto.getContents();
@@ -37,6 +39,10 @@ public class Receipt {
 
     public void submit() {
         status = ReceiptStatus.SUBMIT;
+    }
+
+    public void escalate(ApprovalId approvalId) {
+        this.approvalId = approvalId;
     }
 
     public static Receipt ofCreate(ReceiptCreateDto dto) {
