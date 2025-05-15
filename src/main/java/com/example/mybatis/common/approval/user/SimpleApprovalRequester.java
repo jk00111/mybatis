@@ -12,14 +12,10 @@ public class SimpleApprovalRequester implements ApprovalRequester {
     @EqualsAndHashCode.Include
     private Integer userId;
     private String name;
-    private ApprovalRole role;
-    private ApprovalAction action;
 
-    public SimpleApprovalRequester(Integer userId, String name, ApprovalRole role, ApprovalAction action) {
+    public SimpleApprovalRequester(Integer userId, String name) {
         this.userId = userId;
         this.name = name;
-        this.role = role;
-        this.action = action;
     }
 
     @Override
@@ -30,20 +26,5 @@ public class SimpleApprovalRequester implements ApprovalRequester {
     @Override
     public String name() {
         return name;
-    }
-
-    @Override
-    public ApprovalRole role() {
-        return role;
-    }
-
-    @Override
-    public ApprovalAction action() {
-        return action;
-    }
-
-    @Override
-    public void cancel() {
-        this.action = ApprovalAction.CANCEL;
     }
 }

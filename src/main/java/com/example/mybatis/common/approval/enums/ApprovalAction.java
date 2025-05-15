@@ -4,10 +4,6 @@ import com.example.mybatis.common.config.typeHandler.Enumerable;
 
 public enum ApprovalAction implements Enumerable {
 
-    ESCALATE,
-
-    CANCEL,
-
     APPROVE,
 
     REJECT,

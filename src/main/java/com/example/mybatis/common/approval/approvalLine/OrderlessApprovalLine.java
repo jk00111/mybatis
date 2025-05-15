@@ -60,6 +60,6 @@ public class OrderlessApprovalLine implements ApprovalLine {
                 return approvalDecider;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("not include line");
     }
 }

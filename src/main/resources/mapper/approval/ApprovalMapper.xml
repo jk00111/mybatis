@@ -5,9 +5,7 @@
     <select id="findOne" parameterType="ApprovalId" resultType="ApprovalEntityDto">
         SELECT A.ID,
                A.REQUESTER_ID,
-               A.ROLE AS REQUESTER_ROLE,
-               A.ACTION AS REQUESTER_ACTION,
-               U.NAME AS REQUESTER_NAME
+               A.STATUS
         FROM MYBATIS_APPROVAL A
         LEFT JOIN MYBATIS_TABLE U
             ON U.ID = A.REQUESTER_ID
@@ -18,12 +16,10 @@
         INSERT INTO MYBATIS_APPROVAL
         (
             REQUESTER_ID,
-            ROLE,
-            ACTION
+            STATUS
         ) VALUES (
                 #{requesterId},
-                #{requesterRole},
-                #{requesterAction}
+                #{status}
             )
     </insert>
 
@@ -31,8 +27,7 @@
         UPDATE MYBATIS_APPROVAL
         SET
             REQUESTER_ID = #{requesterId},
-            ROLE = #{requesterRole},
-            ACTION = #{requesterAction}
+            STATUS = #{status}
         WHERE ID = #{id}
     </update>
 </mapper>

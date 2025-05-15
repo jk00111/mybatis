@@ -1,6 +1,5 @@
 package com.example.mybatis.generalTest.receiptApproval.dto;
 
-import com.example.mybatis.common.approval.vo.ApprovalId;
 import com.example.mybatis.common.entity.User;
 import com.example.mybatis.generalTest.receipt.vo.ReceiptId;
 import lombok.Getter;
