@@ -1,8 +1,8 @@
 package com.example.mybatis.common.approval.vo;
 
 import com.example.mybatis.common.IdentityValue;
+import com.example.mybatis.common.approval.entity.ApprovalDecider;
 import com.example.mybatis.common.approval.user.ApprovalRequester;
-import com.example.mybatis.common.approval.user.ApprovalDecider;
 import com.example.mybatis.common.entity.User;
 import lombok.Getter;
 
@@ -61,7 +61,7 @@ public class ApprovalEscalateInfo {
         }
 
         private ApprovalDecider convertDecideUser(User user) {
-            return ApprovalDecider.fromEscalate(user);
+            return new ApprovalDecider(user);
         }
 
         private void validateNotNull() {

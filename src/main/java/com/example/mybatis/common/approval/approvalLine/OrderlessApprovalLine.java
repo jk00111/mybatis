@@ -1,9 +1,10 @@
 package com.example.mybatis.common.approval.approvalLine;
 
 import com.example.mybatis.common.approval.enums.ApprovalAction;
-import com.example.mybatis.common.approval.user.ApprovalDecider;
+import com.example.mybatis.common.approval.entity.ApprovalDecider;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -49,17 +50,17 @@ public class OrderlessApprovalLine implements ApprovalLine {
     }
 
     @Override
-    public List<ApprovalDecider> getAll() {
-        return line;
-    }
-
-    @Override
-    public ApprovalDecider findDeciderInLine(ApprovalDecider user) {
+    public ApprovalDecider findDecider(ApprovalDecider user) {
         for (ApprovalDecider approvalDecider : line) {
             if (approvalDecider.equals(user)) {
                 return approvalDecider;
             }
         }
         throw new IllegalArgumentException("not include line");
+    }
+
+    @Override
+    public Iterator<ApprovalDecider> iterator() {
+        return line.iterator();
     }
 }

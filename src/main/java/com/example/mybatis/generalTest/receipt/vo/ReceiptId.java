@@ -2,7 +2,7 @@ package com.example.mybatis.generalTest.receipt.vo;
 
 import com.example.mybatis.common.IdentityValue;
 
-public class ReceiptId implements IdentityValue {
+public class ReceiptId implements IdentityValue<Integer> {
 
     private final Integer id;
 

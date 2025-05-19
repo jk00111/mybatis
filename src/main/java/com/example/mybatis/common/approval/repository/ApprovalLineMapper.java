@@ -1,6 +1,6 @@
 package com.example.mybatis.common.approval.repository;
 
-import com.example.mybatis.common.approval.user.ApprovalDecider;
+import com.example.mybatis.common.approval.entity.ApprovalDecider;
 import com.example.mybatis.common.approval.vo.ApprovalId;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

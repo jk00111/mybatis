@@ -3,7 +3,7 @@ package com.example.mybatis.common.approval.repository;
 import com.example.mybatis.common.approval.approvalLine.ApprovalLine;
 import com.example.mybatis.common.approval.entity.ApprovalEntity;
 import com.example.mybatis.common.approval.entity.ApprovalEntityDto;
-import com.example.mybatis.common.approval.user.ApprovalDecider;
+import com.example.mybatis.common.approval.entity.ApprovalDecider;
 import com.example.mybatis.common.approval.vo.ApprovalId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -45,21 +45,17 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
     }
 
     private void updateLine(ApprovalLine line) {
-        List<ApprovalDecider> ApprovalDeciders = line.getAll();
-
-        for (ApprovalDecider approvalDecider : ApprovalDeciders) {
+        line.forEach(approvalDecider -> {
             if (approvalDecider.isUpdated()) {
                 lineMapper.update(approvalDecider);
             }
-        }
+        });
     }
 
     private void createLine(ApprovalLine line, Integer approvalId) {
-        List<ApprovalDecider> ApprovalDeciders = line.getAll();
-
-        for (ApprovalDecider approvalDecider : ApprovalDeciders) {
+        line.forEach(approvalDecider -> {
             approvalDecider.register(approvalId);
             lineMapper.create(approvalDecider);
-        }
+        });
     }
 }

@@ -1,6 +1,6 @@
 package com.example.mybatis.common;
 
-public interface IdentityValue {
+public interface IdentityValue<T> {
 
-    Integer get();
+    T get();
 }

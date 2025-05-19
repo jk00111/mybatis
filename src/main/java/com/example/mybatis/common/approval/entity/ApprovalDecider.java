@@ -1,13 +1,15 @@
-package com.example.mybatis.common.approval.user;
+package com.example.mybatis.common.approval.entity;
 
 import com.example.mybatis.common.approval.enums.ApprovalAction;
 import com.example.mybatis.common.approval.enums.ApprovalRole;
+import com.example.mybatis.common.approval.vo.ApprovalId;
+import com.example.mybatis.common.entity.User;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class OrderlessApprover implements ApprovalDecider {
+public class ApprovalDecider {
 
      @EqualsAndHashCode.Include
      private Integer approvalId;
@@ -20,67 +22,53 @@ public class OrderlessApprover implements ApprovalDecider {
 
      private boolean updateFlag = false;
 
-     protected OrderlessApprover() {
+     protected ApprovalDecider() {
      }
 
-     public OrderlessApprover(Integer approvalId, Integer userId, String name, ApprovalRole role, ApprovalAction action) {
-          this.approvalId = approvalId;
-          this.userId = userId;
-          this.name = name;
-          this.role = role;
-          this.action = action;
+     public ApprovalDecider(User user) {
+          this.userId = user.getId();
+          this.name = user.getName();
+          this.role = ApprovalRole.APPROVER;
+          this.action = ApprovalAction.NONE;
      }
 
-     public OrderlessApprover(Integer userId, String name, ApprovalRole role, ApprovalAction action) {
-          this.userId = userId;
-          this.name = name;
-          this.role = role;
-          this.action = action;
+
+     public ApprovalDecider(User user, ApprovalId id) {
+          this.userId = user.getId();
+          this.name = user.getName();
+          this.approvalId = id.getId();
      }
 
-     public OrderlessApprover(Integer approvalId, Integer userId) {
-          this.approvalId = approvalId;
-          this.userId = userId;
-     }
-
-     @Override
      public void register(Integer approvalId) {
           this.approvalId = approvalId;
      }
 
-     @Override
      public boolean isUpdated() {
           return updateFlag;
      }
 
-     @Override
      public void approve() {
           this.action = ApprovalAction.APPROVE;
           this.updateFlag = true;
      }
      
-     @Override
      public void reject() {
           this.action = ApprovalAction.REJECT;
           this.updateFlag = true;
      }
 
-     @Override
      public Integer id() {
           return userId;
      }
 
-     @Override
      public String name() {
           return name;
      }
 
-     @Override
      public ApprovalRole role() {
           return role;
      }
 
-     @Override
      public ApprovalAction action() {
           return action;
      }

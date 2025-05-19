@@ -2,7 +2,7 @@ package com.example.mybatis.generalTest.request.vo;
 
 import com.example.mybatis.common.IdentityValue;
 
-public class RequestId implements IdentityValue {
+public class RequestId implements IdentityValue<Integer> {
 
     private final Integer id;
 
