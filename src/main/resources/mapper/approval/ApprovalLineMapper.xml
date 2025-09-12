@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.common.approval.repository.ApprovalLineMapper">
 
-    <select id="findByApprovalId" parameterType="ApprovalId" resultType="OrderlessApprover">
+    <select id="findByApprovalId" parameterType="ApprovalId" resultType="ApprovalDecider">
         SELECT
             AL.APPROVAL_ID,
             AL.USER_ID,
@@ -15,7 +15,7 @@
         WHERE AL.APPROVAL_ID = #{id}
     </select>
 
-    <insert id="create" parameterType="OrderlessApprover" useGeneratedKeys="true">
+    <insert id="create" parameterType="ApprovalDecider" useGeneratedKeys="true">
         INSERT INTO MYBATIS_APPROVAL_LINE
         VALUES (
                 #{approvalId},
@@ -25,7 +25,7 @@
             )
     </insert>
 
-    <update id="update" parameterType="OrderlessApprover">
+    <update id="update" parameterType="ApprovalDecider">
         UPDATE MYBATIS_APPROVAL_LINE
         SET
             ROLE = #{role},

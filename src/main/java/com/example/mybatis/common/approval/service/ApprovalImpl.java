@@ -7,14 +7,13 @@ import com.example.mybatis.common.approval.vo.ApprovalResult;
 import com.example.mybatis.common.approval.vo.ApprovalSubmit;
 import com.example.mybatis.common.approval.vo.CancelRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
 @RequiredArgsConstructor
+@Component
 public class ApprovalImpl implements Approval {
 
     private final ApprovalRepository approvalRepository;
-
 
     @Override
     public ApprovalResult escalate(ApprovalEscalateInfo escalateInfo) {
