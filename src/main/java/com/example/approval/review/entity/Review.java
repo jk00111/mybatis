@@ -5,6 +5,7 @@ import com.example.approval.enums.ReviewStatus;
 import com.example.approval.event.ApproveEvent;
 import com.example.approval.event.CancelEvent;
 import com.example.approval.event.RejectEvent;
+import com.example.approval.event.ReviewEvent;
 import com.example.approval.vo.ApprovalUser;
 import lombok.RequiredArgsConstructor;
 
@@ -20,8 +21,8 @@ public class Review {
         return id;
     }
 
-    public void review(ApproveEvent event) {
-        if (!event.isApproved()) {
+    public void review(ReviewEvent event) {
+        if (!event.isReviewed()) {
             return;
         }
         this.status = ReviewStatus.REVIEWED;

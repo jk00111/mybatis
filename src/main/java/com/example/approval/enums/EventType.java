@@ -6,6 +6,8 @@ public enum EventType {
 
     APPROVED,
 
+    REVIEWED,
+
     REJECTED,
 
     CANCELED,

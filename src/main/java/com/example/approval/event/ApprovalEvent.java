@@ -4,13 +4,18 @@ import com.example.approval.enums.EventType;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ApprovalEvent implements ApproveEvent, RejectEvent, CancelEvent {
+public class ApprovalEvent implements ApproveEvent, ReviewEvent, RejectEvent, CancelEvent {
 
     private final EventType type;
 
     @Override
     public boolean isApproved() {
         return type.equals(EventType.APPROVED);
+    }
+
+    @Override
+    public boolean isReviewed() {
+        return type.equals(EventType.REVIEWED);
     }
 
     @Override

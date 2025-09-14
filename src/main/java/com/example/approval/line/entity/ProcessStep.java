@@ -4,6 +4,8 @@ import com.example.approval.enums.StepStatus;
 
 public interface ProcessStep {
 
+    long id();
+
     void proceed();
 
     void reject();

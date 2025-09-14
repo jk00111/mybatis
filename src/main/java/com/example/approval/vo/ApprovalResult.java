@@ -7,6 +7,6 @@ import lombok.RequiredArgsConstructor;
 public class ApprovalResult {
 
     private final long id;
-    private final ApprovalEvent event;
+    private final boolean isFinish;
 
 }

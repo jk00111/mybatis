@@ -2,11 +2,9 @@ package com.example.approval.line.service;
 
 import com.example.approval.event.ApprovalEvent;
 import com.example.approval.event.ApprovalEventFactory;
-import com.example.approval.line.entity.ApprovalLine;
-import com.example.approval.line.entity.ApprovalStep;
-import com.example.approval.line.entity.ProcessStep;
-import com.example.approval.line.entity.ReviewLine;
+import com.example.approval.line.entity.*;
 import com.example.approval.line.repository.StepRepository;
+import com.example.approval.vo.ApprovalUser;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -30,6 +28,7 @@ public class LineServiceImpl implements LineService {
     public void create(ApprovalLine line) {
         line.forEach(repository::create);
     }
+
     @Override
     public ApprovalEvent approve(ApprovalLine line) {
         ProcessStep current = line.getCurrent();
@@ -52,13 +51,14 @@ public class LineServiceImpl implements LineService {
     }
 
     @Override
-    public ApprovalEvent review(ReviewLine line) {
-
-        return null;
+    public ApprovalEvent review(ReviewLine line, ApprovalUser reviewer) {
+        ProcessStep reviewStep = line.get(reviewer);
+        reviewStep.proceed();
+        repository.update(reviewStep);
+        return ApprovalEventFactory.ofApprove(line.isReviewed());
     }
 
-    @Override
-    public void activateNext(ApprovalLine line) {
+    private void activateNext(ApprovalLine line) {
         ProcessStep next = line.next();
         next.waiting();
         repository.update(next);

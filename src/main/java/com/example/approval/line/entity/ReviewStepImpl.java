@@ -19,6 +19,11 @@ public class ReviewStepImpl implements ReviewStep {
     private StepStatus status;
 
     @Override
+    public long id() {
+        return this.id;
+    }
+
+    @Override
     public void proceed() {
         this.status = StepStatus.REVIEWED;
     }
@@ -29,7 +34,11 @@ public class ReviewStepImpl implements ReviewStep {
 
     @Override
     public StepStatus status() {
-        return null;
+        return this.status;
     }
 
+    @Override
+    public void waiting() {
+        this.status = StepStatus.WAITING;
+    }
 }

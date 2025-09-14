@@ -9,10 +9,23 @@ public class ApprovalEventFactory {
             return new ApprovalEvent(EventType.APPROVED);
         }
 
-        return new ApprovalEvent(EventType.NONE);
+        return ofDefault();
+    }
+
+    public static ApprovalEvent ofReview(boolean isFinish) {
+        if (isFinish) {
+            return new ApprovalEvent(EventType.REVIEWED);
+        }
+
+        return ofDefault();
     }
 
     public static ApprovalEvent ofReject() {
         return new ApprovalEvent(EventType.REJECTED);
+    }
+
+
+    private static ApprovalEvent ofDefault() {
+        return new ApprovalEvent(EventType.NONE);
     }
 }

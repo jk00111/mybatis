@@ -7,6 +7,7 @@ import com.example.approval.line.entity.ApprovalLine;
 import com.example.approval.line.entity.ApprovalStep;
 import com.example.approval.line.entity.ProcessStep;
 import com.example.approval.line.entity.ReviewLine;
+import com.example.approval.vo.ApprovalUser;
 
 import java.util.List;
 
@@ -22,8 +23,6 @@ public interface LineService {
 
     ApprovalEvent reject(ApprovalLine line);
 
-    ApprovalEvent review(ReviewLine line);
-
-    void activateNext(ApprovalLine line);
+    ApprovalEvent review(ReviewLine line, ApprovalUser reviewer);
 
 }
