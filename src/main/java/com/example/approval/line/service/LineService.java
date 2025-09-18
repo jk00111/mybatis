@@ -10,6 +10,7 @@ import com.example.approval.line.entity.ReviewLine;
 import com.example.approval.vo.ApprovalUser;
 
 import java.util.List;
+import java.util.Set;
 
 public interface LineService {
 
@@ -17,7 +18,10 @@ public interface LineService {
 
     List<ProcessStep> findByApproval(long approvalId);
 
+    Set<ProcessStep> findByReview(long reviewId);
+
     void create(ApprovalLine line);
+    void create(ReviewLine line);
 
     ApprovalEvent approve(ApprovalLine line);
 

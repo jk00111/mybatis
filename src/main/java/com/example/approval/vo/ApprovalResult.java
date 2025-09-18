@@ -9,4 +9,8 @@ public class ApprovalResult {
     private final long id;
     private final boolean isFinish;
 
+
+    public static ApprovalResult escalated(long id) {
+        return new ApprovalResult(id, false);
+    }
 }

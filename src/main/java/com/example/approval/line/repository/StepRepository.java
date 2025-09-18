@@ -4,6 +4,7 @@ import com.example.approval.line.entity.ApprovalStep;
 import com.example.approval.line.entity.ProcessStep;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StepRepository {
 
@@ -12,4 +13,5 @@ public interface StepRepository {
     void delete(ProcessStep step);
     ProcessStep findOne(long id);
     List<ProcessStep> findByApproval(long approvalId);
+    Set<ProcessStep> findByReview(long reviewId);
 }

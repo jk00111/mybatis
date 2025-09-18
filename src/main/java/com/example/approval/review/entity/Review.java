@@ -1,8 +1,7 @@
 package com.example.approval.review.entity;
 
-import com.example.approval.enums.ApprovalStatus;
+import com.example.approval.dto.ReviewDto;
 import com.example.approval.enums.ReviewStatus;
-import com.example.approval.event.ApproveEvent;
 import com.example.approval.event.CancelEvent;
 import com.example.approval.event.RejectEvent;
 import com.example.approval.event.ReviewEvent;
@@ -12,13 +11,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Review {
 
-    private final long id;
+    private long id;
     private String contents;
     private ReviewStatus status;
     private ApprovalUser requester;
 
     public long id() {
         return id;
+    }
+
+    public static Review escalate(ReviewDto reviewDto) {
+        return new Review();
     }
 
     public void review(ReviewEvent event) {

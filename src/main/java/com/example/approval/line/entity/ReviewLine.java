@@ -15,8 +15,8 @@ public class ReviewLine implements Iterable<ProcessStep> {
 
     private final Set<ProcessStep> steps;
 
-    public ReviewLine(long id, List<ProcessStep> steps) {
-        this.steps = new HashSet<>(steps);
+    public ReviewLine(long id, Set<ProcessStep> steps) {
+        this.steps = steps;
     }
 
     @Override

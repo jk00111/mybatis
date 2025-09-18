@@ -8,6 +8,7 @@ import com.example.approval.vo.ApprovalUser;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class LineServiceImpl implements LineService {
@@ -25,7 +26,17 @@ public class LineServiceImpl implements LineService {
     }
 
     @Override
+    public Set<ProcessStep> findByReview(long reviewId) {
+        return repository.findByReview(reviewId);
+    }
+
+    @Override
     public void create(ApprovalLine line) {
+        line.forEach(repository::create);
+    }
+
+    @Override
+    public void create(ReviewLine line) {
         line.forEach(repository::create);
     }
 

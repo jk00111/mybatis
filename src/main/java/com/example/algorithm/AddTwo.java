@@ -1,6 +1,6 @@
-package com.example;
+package com.example.algorithm;
 
-public class Solution {
+public class AddTwo {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode answer = new ListNode();

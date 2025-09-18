@@ -6,7 +6,7 @@ import com.example.approval.review.entity.Review;
 
 public interface ReviewService {
 
-    void escalate();
+    void escalate(Review review);
 
     Review findOne(long id);
 

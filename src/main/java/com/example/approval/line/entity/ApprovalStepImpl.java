@@ -13,6 +13,11 @@ public class ApprovalStepImpl implements ApprovalStep {
 
 
     @Override
+    public long id() {
+        return 0;
+    }
+
+    @Override
     public void proceed() {
         status = StepStatus.APPROVED;
     }

@@ -18,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void escalate() {
+    public void escalate(Review review) {
 
     }
 
