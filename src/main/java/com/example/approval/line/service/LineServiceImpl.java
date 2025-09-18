@@ -1,5 +1,6 @@
 package com.example.approval.line.service;
 
+import com.example.approval.enums.StepStatus;
 import com.example.approval.event.ApprovalEvent;
 import com.example.approval.event.ApprovalEventFactory;
 import com.example.approval.line.entity.*;
@@ -21,12 +22,12 @@ public class LineServiceImpl implements LineService {
     }
 
     @Override
-    public List<ProcessStep> findByApproval(long approvalId) {
+    public List<ApprovalStep> findByApproval(long approvalId) {
         return repository.findByApproval(approvalId);
     }
 
     @Override
-    public Set<ProcessStep> findByReview(long reviewId) {
+    public Set<ReviewStep> findByReview(long reviewId) {
         return repository.findByReview(reviewId);
     }
 
@@ -70,7 +71,7 @@ public class LineServiceImpl implements LineService {
     }
 
     private void activateNext(ApprovalLine line) {
-        ProcessStep next = line.next();
+        ApprovalStep next = line.next();
         next.waiting();
         repository.update(next);
     }

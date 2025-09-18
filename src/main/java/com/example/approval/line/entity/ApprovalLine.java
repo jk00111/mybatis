@@ -6,29 +6,28 @@ import lombok.RequiredArgsConstructor;
 import java.util.Iterator;
 import java.util.List;
 
-public class ApprovalLine implements Iterable<ProcessStep> {
+public class ApprovalLine implements Iterable<ApprovalStep> {
 
     private final long approvalId;
-
-    private final List<ProcessStep> steps;
+    private final List<ApprovalStep> steps;
     private int current;
 
-    public ApprovalLine(long approvalId, List<ProcessStep> steps) {
+    public ApprovalLine(long approvalId, List<ApprovalStep> steps) {
         this.approvalId = approvalId;
         this.steps = steps;
         this.current = current();
     }
 
     @Override
-    public Iterator<ProcessStep> iterator() {
+    public Iterator<ApprovalStep> iterator() {
         return steps.iterator();
     }
 
-    public ProcessStep getCurrent() {
+    public ApprovalStep getCurrent() {
         return steps.get(current());
     }
 
-    public ProcessStep next() {
+    public ApprovalStep next() {
         if (!hasNext()) {
             throw new IndexOutOfBoundsException();
         }
@@ -52,7 +51,7 @@ public class ApprovalLine implements Iterable<ProcessStep> {
     }
 
     private int current() {
-        ProcessStep current = steps.stream()
+        ApprovalStep current = steps.stream()
                 .filter(v -> v.status().equals(StepStatus.WAITING))
                 .findFirst()
                 .orElseThrow();

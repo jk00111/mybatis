@@ -25,9 +25,6 @@ public class Review {
     }
 
     public void review(ReviewEvent event) {
-        if (!event.isReviewed()) {
-            return;
-        }
         this.status = ReviewStatus.REVIEWED;
     }
 

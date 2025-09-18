@@ -24,9 +24,6 @@ public class Approval {
     }
 
     public void approve(ApproveEvent event) {
-        if (!event.isApproved()) {
-            return;
-        }
         this.status = ApprovalStatus.APPROVED;
     }
 

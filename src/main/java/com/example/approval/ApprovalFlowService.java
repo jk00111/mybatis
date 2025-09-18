@@ -6,12 +6,13 @@ import com.example.approval.draft.DraftService;
 import com.example.approval.dto.ApprovalDto;
 import com.example.approval.dto.DraftDto;
 import com.example.approval.dto.ReviewDto;
+import com.example.approval.event.ApprovalEvent;
 import com.example.approval.event.ApproveEvent;
 import com.example.approval.event.RejectEvent;
 import com.example.approval.event.ReviewEvent;
 import com.example.approval.line.entity.ApprovalLine;
-import com.example.approval.line.entity.ProcessStep;
 import com.example.approval.line.entity.ReviewLine;
+import com.example.approval.line.entity.ReviewStep;
 import com.example.approval.line.service.LineService;
 import com.example.approval.review.entity.Review;
 import com.example.approval.review.service.ReviewService;
@@ -44,29 +45,32 @@ public class ApprovalFlowService {
         ApprovalLine line = new ApprovalLine(id, lineService.findByApproval(id));
         ApproveEvent event = lineService.approve(line);
 
-        Approval approval = approvalService.findOne(id);
-        approvalService.approve(approval, event);
-
+        approvalService.approve(id, event);
         return new ApprovalResult(id, event.isApproved());
     }
 
-    public ApprovalResult reject(long id, ApprovalUser user) {
+    public ApprovalResult rejectApproval(long id, ApprovalUser user) {
         ApprovalLine line = new ApprovalLine(id, lineService.findByApproval(id));
         RejectEvent event = lineService.reject(line);
 
-        Approval approval = approvalService.findOne(id);
-        approvalService.reject(approval, event);
-
+        approvalService.reject(id, event);
         return new ApprovalResult(id, event.isRejected());
     }
 
     public ApprovalResult review(long id, ApprovalUser user) {
         ReviewLine reviewLine = new ReviewLine(id, lineService.findByReview(id));
         ReviewEvent event = lineService.review(reviewLine, user);
-        Review review = reviewService.findOne(id);
-        reviewService.review(review, event);
 
+        reviewService.review(id, event);
         return new ApprovalResult(id, event.isReviewed());
+    }
+
+    public ApprovalResult rejectReview(long id, ApprovalUser user) {
+        ReviewLine reviewLine = new ReviewLine(id, lineService.findByReview(id));
+        ApprovalEvent event = lineService.review(reviewLine, user);
+
+        reviewService.reject(id, event);
+        return new ApprovalResult(id, event.isRejected());
     }
 
     private boolean hasReview(DraftDto dto) {
@@ -86,7 +90,7 @@ public class ApprovalFlowService {
         Review review = Review.escalate(reviewDto);
         reviewService.escalate(review);
 
-        Set<ProcessStep> steps = reviewDto.steps();
+        Set<ReviewStep> steps = reviewDto.steps();
         ReviewLine reviewLine = new ReviewLine(review.id(), steps);
         lineService.create(reviewLine);
     }

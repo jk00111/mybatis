@@ -37,8 +37,4 @@ public class ReviewStepImpl implements ReviewStep {
         return this.status;
     }
 
-    @Override
-    public void waiting() {
-        this.status = StepStatus.WAITING;
-    }
 }

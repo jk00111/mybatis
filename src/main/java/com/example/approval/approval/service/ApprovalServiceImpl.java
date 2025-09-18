@@ -22,13 +22,19 @@ public class ApprovalServiceImpl implements ApprovalService {
     }
 
     @Override
-    public void approve(Approval approval, ApproveEvent event) {
+    public void approve(long approvalId, ApproveEvent event) {
+        if (!event.isApproved()) {
+            return;
+        }
+        Approval approval = findOne(approvalId);
         approval.approve(event);
         repository.update(approval);
     }
 
     @Override
-    public void reject(Approval approval, RejectEvent event) {
+    public void reject(long approvalId, RejectEvent event) {
+        Approval approval = findOne(approvalId);
+
         approval.reject(event);
         repository.update(approval);
     }

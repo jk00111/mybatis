@@ -10,8 +10,6 @@ public interface ProcessStep {
 
     void reject();
 
-    void waiting();
-
     StepStatus status();
 
 }

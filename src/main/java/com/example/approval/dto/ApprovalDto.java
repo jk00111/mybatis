@@ -1,15 +1,16 @@
 package com.example.approval.dto;
 
+import com.example.approval.line.entity.ApprovalStep;
 import com.example.approval.line.entity.ProcessStep;
 
 import java.util.List;
 
 public class ApprovalDto {
 
-    private List<ProcessStep> steps;
+    private List<ApprovalStep> steps;
 
 
-    public List<ProcessStep> steps() {
+    public List<ApprovalStep> steps() {
         return this.steps;
     }
 }

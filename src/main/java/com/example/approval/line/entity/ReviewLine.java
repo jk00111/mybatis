@@ -11,20 +11,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class ReviewLine implements Iterable<ProcessStep> {
+public class ReviewLine implements Iterable<ReviewStep> {
 
-    private final Set<ProcessStep> steps;
+    private final Set<ReviewStep> steps;
 
-    public ReviewLine(long id, Set<ProcessStep> steps) {
+    public ReviewLine(long id, Set<ReviewStep> steps) {
         this.steps = steps;
     }
 
     @Override
-    public Iterator<ProcessStep> iterator() {
+    public Iterator<ReviewStep> iterator() {
         return steps.iterator();
     }
 
-    public ProcessStep get(ApprovalUser user) {
+    public ReviewStep get(ApprovalUser user) {
         return steps.stream()
                 .filter(step -> step.id() == user.getId())
                 .findFirst().orElseThrow();

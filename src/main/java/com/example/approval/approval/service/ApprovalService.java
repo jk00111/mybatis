@@ -11,8 +11,8 @@ public interface ApprovalService {
 
     void escalate(Approval approval);
 
-    void approve(Approval approval, ApproveEvent event);
+    void approve(long approvalId, ApproveEvent event);
 
-    void reject(Approval approval, RejectEvent event);
+    void reject(long approvalId, RejectEvent event);
 
 }

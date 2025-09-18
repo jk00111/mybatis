@@ -10,8 +10,8 @@ public interface ReviewService {
 
     Review findOne(long id);
 
-    void review(Review review, ReviewEvent event);
+    void review(long reviewId, ReviewEvent event);
 
-    void reject(Review review, RejectEvent event);
+    void reject(long reviewId, RejectEvent event);
 
 }

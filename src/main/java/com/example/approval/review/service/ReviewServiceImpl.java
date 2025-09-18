@@ -14,7 +14,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review findOne(long id) {
-        return null;
+        return repository.findOne(id);
     }
 
     @Override
@@ -23,13 +23,19 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void review(Review review, ReviewEvent event) {
+    public void review(long reviewId, ReviewEvent event) {
+        if (!event.isReviewed()) {
+            return;
+        }
+
+        Review review = findOne(reviewId);
         review.review(event);
         repository.update(review);
     }
 
     @Override
-    public void reject(Review review, RejectEvent event) {
+    public void reject(long reviewId, RejectEvent event) {
+        Review review = findOne(reviewId);
         review.reject(event);
         repository.update(review);
     }
