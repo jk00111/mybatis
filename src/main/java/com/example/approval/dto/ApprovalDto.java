@@ -9,7 +9,6 @@ public class ApprovalDto {
 
     private List<ApprovalStep> steps;
 
-
     public List<ApprovalStep> steps() {
         return this.steps;
     }

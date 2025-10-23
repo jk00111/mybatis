@@ -1,0 +1,161 @@
+2025-04-14 19:16:20 [restartedMain] INFO  c.example.mybatis.MybatisApplication - Starting MybatisApplication using Java 17.0.8.1 with PID 11000 (D:\00.dev\mybatis\build\classes\java\main started by user in D:\00.dev\mybatis)
+2025-04-14 19:16:20 [restartedMain] INFO  c.example.mybatis.MybatisApplication - The following 1 profile is active: "local"
+2025-04-14 19:16:20 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\user\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\23.7.0.25.01\665f52abef9122ce003b5cfc1d9d44f7302e2cfe\ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/C:/Users/user/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+2025-04-14 19:16:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-14 19:16:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-14 19:16:21 [restartedMain] DEBUG com.zaxxer.hikari.HikariConfig - Driver class net.sf.log4jdbc.sql.jdbcapi.DriverSpy found in Thread context class loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1928d02a
+2025-04-14 19:16:22 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-14 19:16:22 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-14 19:16:22 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-14 19:16:22 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-14 19:16:22 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-14 19:16:22 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1604 ms
+2025-04-14 19:16:23 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-14 19:16:23 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-14 19:16:23 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-14 19:16:23 [restartedMain] INFO  c.example.mybatis.MybatisApplication - Started MybatisApplication in 3.26 seconds (process running for 4.03)
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName................."net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - exceptionOverrideClassName......none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:log4jdbc:oracle:thin:@localhost:1521:ORCL
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - keepaliveTime...................0
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................5
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................5
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - schema..........................none
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............default
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - username........................"MYBATIS_USER"
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  jdbc.connection - 1. Connection opened
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@76d66b77
+2025-04-14 19:16:35 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-14 19:16:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+2025-04-14 19:16:35 [HikariPool-1 connection adder] INFO  jdbc.connection - 2. Connection opened
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2309bc80
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT
+            *
+        FROM MYBATIS_REQUEST
+        WHERE ID = 21
+ {executed in 92 msec}
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. UPDATE MYBATIS_REQUEST
+        SET
+            TITLE = '제목',
+            CONTENTS = '본문',
+            TEST_TYPE = 'GENERAL',
+            REQUEST_DATE = 2025-04-10,
+            REQUESTER_ID = 1,
+            STATUS = 'SUBMIT'
+        WHERE ID = 21
+ {executed in 1 msec}
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=2, active=1, idle=1, waiting=0)
+2025-04-14 19:16:35 [http-nio-8080-exec-1] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. INSERT INTO MYBATIS_RECEIPT (
+            REQUEST_ID,
+            TITLE,
+            CONTENTS,
+            RECEIPT_DATE,
+            STATUS,
+            RECEPTIONIST_ID
+        ) VALUES (
+                21,
+                NULL,
+                NULL,
+                NULL,
+                'INIT',
+                NULL
+                          )
+ {executed in 3 msec}
+2025-04-14 19:16:35 [HikariPool-1 connection adder] INFO  jdbc.connection - 3. Connection opened
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@58b03963
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=3, active=0, idle=3, waiting=0)
+2025-04-14 19:16:35 [HikariPool-1 connection adder] INFO  jdbc.connection - 4. Connection opened
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@65e67403
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=4, active=0, idle=4, waiting=0)
+2025-04-14 19:16:35 [HikariPool-1 connection adder] INFO  jdbc.connection - 5. Connection opened
+2025-04-14 19:16:35 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@80f5a0e
+2025-04-14 19:16:36 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:16:36 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:17:00 [http-nio-8080-exec-3] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT
+            R.*,
+            U.NAME AS RECEPTIONIST_NAME
+        FROM MYBATIS_RECEIPT R
+        LEFT JOIN MYBATIS_TABLE U
+        ON R.RECEPTIONIST_ID = U.ID
+        WHERE R.ID = 21
+ {executed in 1 msec}
+2025-04-14 19:17:00 [http-nio-8080-exec-3] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT * FROM MYBATIS_ITEM WHERE RECEIPT_ID = 21
+ {executed in 1 msec}
+2025-04-14 19:17:00 [http-nio-8080-exec-3] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. UPDATE MYBATIS_RECEIPT
+        SET
+            REQUEST_ID = 21,
+            TITLE = '접수',
+            CONTENTS = '접수',
+            RECEIPT_DATE = 2025-04-10,
+            STATUS = 'INIT',
+            RECEPTIONIST_ID = 1
+        WHERE ID = 21
+ {executed in 1 msec}
+2025-04-14 19:17:00 [http-nio-8080-exec-3] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT * FROM MYBATIS_ITEM WHERE RECEIPT_ID = 21
+ {executed in 0 msec}
+2025-04-14 19:17:00 [http-nio-8080-exec-3] DEBUG jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. INSERT INTO MYBATIS_ITEM (
+                RECEIPT_ID,
+                ITEM_CODE,
+                NAME
+        ) VALUES (
+                3,
+                '0001',
+                'item2'
+                          )
+ {executed in 0 msec}
+2025-04-14 19:17:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:17:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:17:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:17:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:18:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:18:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:18:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:18:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:19:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:19:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:19:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:19:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:20:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:20:05 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:20:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=5, active=0, idle=5, waiting=0)
+2025-04-14 19:20:35 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-04-14 19:20:47 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete

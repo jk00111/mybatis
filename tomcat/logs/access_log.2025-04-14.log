@@ -1,0 +1,2 @@
+[14/Apr/2025:19:16:35 +0900] 0:0:0:0:0:0:0:1 POST /test/general/requests/21/approvalSubmit HTTP/1.1 200 (786390 microseconds)
+[14/Apr/2025:19:17:00 +0900] 0:0:0:0:0:0:0:1 PUT /test/general/receipts/21 HTTP/1.1 200 (94439 microseconds)

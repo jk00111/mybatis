@@ -1,7 +1,6 @@
 package com.example.approval.approval.entity;
 
 import com.example.approval.dto.ApprovalDto;
-import com.example.approval.dto.DraftDto;
 import com.example.approval.vo.ApprovalUser;
 import com.example.approval.enums.ApprovalStatus;
 import com.example.approval.event.ApproveEvent;

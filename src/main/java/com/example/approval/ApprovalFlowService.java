@@ -5,6 +5,7 @@ import com.example.approval.approval.service.ApprovalService;
 import com.example.approval.draft.DraftService;
 import com.example.approval.dto.ApprovalDto;
 import com.example.approval.dto.DraftDto;
+import com.example.approval.dto.ReviewAndApprovalDto;
 import com.example.approval.dto.ReviewDto;
 import com.example.approval.event.ApprovalEvent;
 import com.example.approval.event.ApproveEvent;
@@ -30,14 +31,23 @@ public class ApprovalFlowService {
     private final ReviewService reviewService;
     private final LineService lineService;
 
-    public ApprovalResult escalate(DraftDto dto, ApprovalUser requester) {
-        long draftId = draftService.escalate(dto);
+    public ApprovalResult escalate(ReviewAndApprovalDto dto, ApprovalUser requester) {
+        long draftId = draft(new DraftDto(), requester);
+
+        escalateReview(dto.forReview(), requester);
         escalateApproval(dto.forApproval(), requester);
+        return ApprovalResult.escalated(draftId);
+    }
 
-        if (hasReview(dto)) {
-            escalateReview(dto.forReview(), requester);
-        }
+    public ApprovalResult escalate(ApprovalDto approvalDto, ApprovalUser requester) {
+        long draftId = draft(new DraftDto(), requester);
+        escalateApproval(approvalDto, requester);
+        return ApprovalResult.escalated(draftId);
+    }
 
+    public ApprovalResult escalate(ReviewDto reviewDto, ApprovalUser requester) {
+        long draftId = draft(new DraftDto(), requester);
+        escalateReview(reviewDto, requester);
         return ApprovalResult.escalated(draftId);
     }
 
@@ -73,8 +83,8 @@ public class ApprovalFlowService {
         return new ApprovalResult(id, event.isRejected());
     }
 
-    private boolean hasReview(DraftDto dto) {
-        return dto.forReview() != null;
+    private long draft(DraftDto dto, ApprovalUser requester) {
+        return draftService.escalate(dto);
     }
 
     private void escalateApproval(ApprovalDto approvalDto, ApprovalUser requester) {
