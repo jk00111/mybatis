@@ -1,7 +1,5 @@
 package com.example.approval.dto;
 
-import com.example.approval.approval.entity.Approval;
-
 public class ReviewAndApprovalDto {
 
     private ApprovalDto approvalDto;
@@ -15,9 +13,5 @@ public class ReviewAndApprovalDto {
 
     public ReviewDto forReview() {
         return this.reviewDto;
-    }
-
-    public Approval toEntity() {
-        return new Approval();
     }
 }

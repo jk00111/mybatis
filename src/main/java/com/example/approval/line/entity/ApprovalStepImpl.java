@@ -14,7 +14,7 @@ public class ApprovalStepImpl implements ApprovalStep {
 
     @Override
     public long id() {
-        return 0;
+        return this.id;
     }
 
     @Override

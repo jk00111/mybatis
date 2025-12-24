@@ -54,6 +54,12 @@ public class LineServiceImpl implements LineService {
         return ApprovalEventFactory.ofApprove(line.isApproved());
     }
 
+
+    /**
+    *  디미토 법칙 -> 라인 서비스가 step의 내부구현을 알아야 할 필요가 있는가??
+    *  행위를 메시지로 요청하면.. 업데이트 과정떄문에 스탭자체 반환은 필요함
+    *
+    * */
     @Override
     public ApprovalEvent reject(ApprovalLine line) {
         ProcessStep current = line.getCurrent();
