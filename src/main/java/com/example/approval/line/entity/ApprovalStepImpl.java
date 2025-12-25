@@ -18,12 +18,20 @@ public class ApprovalStepImpl implements ApprovalStep {
     }
 
     @Override
-    public void proceed() {
+    public void proceed(ApprovalUser user) {
+        if (validate(user)) {
+            return;
+        }
+
         status = StepStatus.APPROVED;
     }
 
     @Override
-    public void reject() {
+    public void reject(ApprovalUser user) {
+        if (validate(user)) {
+            return;
+        }
+
         status = StepStatus.REJECTED;
     }
 
@@ -33,7 +41,16 @@ public class ApprovalStepImpl implements ApprovalStep {
     }
 
     @Override
+    public void pass() {
+        status = StepStatus.PASSED;
+    }
+
+    @Override
     public StepStatus status() {
         return status;
+    }
+
+    private boolean validate(ApprovalUser user) {
+        return !this.approver.equals(user);
     }
 }

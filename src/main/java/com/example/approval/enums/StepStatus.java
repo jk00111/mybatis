@@ -12,5 +12,5 @@ public enum StepStatus {
 
     REJECTED,
 
-
+    PASSED,
 }

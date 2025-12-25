@@ -52,8 +52,8 @@ public class ApprovalLine implements Iterable<ApprovalStep> {
         return this.current < steps.size() + 1;
     }
 
-    public void approve(ApprovalUser approver) {
-        policy.submit();
+    public ApprovalStep approve(ApprovalUser approver) {
+        return policy.apply(this, approver);
     }
 
     public boolean isApproved() {

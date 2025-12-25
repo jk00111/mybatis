@@ -6,7 +6,6 @@ public class ReviewAndApprovalDto {
 
     private ReviewDto reviewDto;
 
-
     public ApprovalDto forApproval() {
         return this.approvalDto;
     }
