@@ -1,6 +1,6 @@
 package com.example.approval.event;
 
-import com.example.approval.enums.EventType;
+import com.example.approval.event.enums.EventType;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

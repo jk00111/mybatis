@@ -1,6 +1,6 @@
 package com.example.approval.line.entity;
 
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
 import com.example.approval.vo.ApprovalUser;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,8 +25,13 @@ public class ReviewStepImpl implements ReviewStep {
     }
 
     @Override
+    public boolean isUpdated() {
+        return false;
+    }
+
+    @Override
     public void proceed(ApprovalUser user) {
-        if (!isCharger(user)) {
+        if (validate(user)) {
             return;
         }
 
@@ -34,7 +39,7 @@ public class ReviewStepImpl implements ReviewStep {
     }
     @Override
     public void reject(ApprovalUser user) {
-        if (!isCharger(user)) {
+        if (validate(user)) {
             return;
         }
 
@@ -46,7 +51,7 @@ public class ReviewStepImpl implements ReviewStep {
         return this.status;
     }
 
-    private boolean isCharger(ApprovalUser user) {
-        return user.getId() == reviewerId;
+    private boolean validate(ApprovalUser user) {
+        return user.getId() != reviewerId;
     }
 }

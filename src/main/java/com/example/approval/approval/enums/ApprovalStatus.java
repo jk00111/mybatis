@@ -1,4 +1,4 @@
-package com.example.approval.enums;
+package com.example.approval.approval.enums;
 
 public enum ApprovalStatus {
 

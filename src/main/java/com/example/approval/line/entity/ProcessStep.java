@@ -1,6 +1,6 @@
 package com.example.approval.line.entity;
 
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
 import com.example.approval.vo.ApprovalUser;
 
 public interface ProcessStep {
@@ -13,4 +13,5 @@ public interface ProcessStep {
 
     StepStatus status();
 
+    boolean isUpdated();
 }

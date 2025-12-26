@@ -25,6 +25,8 @@ public interface LineService {
 
     ApprovalEvent reject(ApprovalLine line, ApprovalUser user);
 
-    ApprovalEvent review(ReviewLine line, ApprovalUser reviewer);
+    ApprovalEvent review(ReviewLine line, ApprovalUser user);
+
+    ApprovalEvent reject(ReviewLine line, ApprovalUser user);
 
 }

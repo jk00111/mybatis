@@ -1,7 +1,7 @@
 package com.example.approval.line.entity;
 
 import com.example.approval.vo.ApprovalUser;
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -15,6 +15,11 @@ public class ApprovalStepImpl implements ApprovalStep {
     @Override
     public long id() {
         return this.id;
+    }
+
+    @Override
+    public boolean isUpdated() {
+        return false;
     }
 
     @Override

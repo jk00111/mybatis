@@ -1,8 +1,8 @@
 package com.example.approval.approval.entity;
 
-import com.example.approval.dto.ApprovalDto;
+import com.example.approval.approval.dto.ApprovalDto;
 import com.example.approval.vo.ApprovalUser;
-import com.example.approval.enums.ApprovalStatus;
+import com.example.approval.approval.enums.ApprovalStatus;
 import com.example.approval.event.ApproveEvent;
 import com.example.approval.event.CancelEvent;
 import com.example.approval.event.RejectEvent;
@@ -14,7 +14,7 @@ public class Approval {
     private ApprovalStatus status;
     private ApprovalUser requester;
 
-    public static Approval escalate(ApprovalDto dto) {
+    public static Approval escalate(ApprovalDto dto, ApprovalUser requester) {
         return new Approval();
     }
 
