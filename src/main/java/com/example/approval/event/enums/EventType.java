@@ -1,4 +1,4 @@
-package com.example.approval.enums;
+package com.example.approval.event.enums;
 
 public enum EventType {
 

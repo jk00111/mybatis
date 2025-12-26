@@ -1,15 +1,17 @@
 package com.example.approval.line.entity;
 
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
+import com.example.approval.vo.ApprovalUser;
 
 public interface ProcessStep {
 
     long id();
 
-    void proceed();
+    void proceed(ApprovalUser user);
 
-    void reject();
+    void reject(ApprovalUser user);
 
     StepStatus status();
 
+    boolean isUpdated();
 }

@@ -2,11 +2,11 @@ package com.example.approval;
 
 import com.example.approval.approval.entity.Approval;
 import com.example.approval.approval.service.ApprovalService;
-import com.example.approval.draft.DraftService;
-import com.example.approval.dto.ApprovalDto;
-import com.example.approval.dto.DraftDto;
+import com.example.approval.document.service.DocumentService;
+import com.example.approval.approval.dto.ApprovalDto;
+import com.example.approval.document.dto.DocumentDto;
 import com.example.approval.dto.ReviewAndApprovalDto;
-import com.example.approval.dto.ReviewDto;
+import com.example.approval.review.dto.ReviewDto;
 import com.example.approval.event.ApprovalEvent;
 import com.example.approval.event.ApproveEvent;
 import com.example.approval.event.RejectEvent;
@@ -23,51 +23,44 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Set;
 
-/** TODO
- * 결재 - 승인 용어 정리
- * 기안 << 개념이 필요한가 + 용어 변경 필요함
- *
- * */
 @RequiredArgsConstructor
 public class ApprovalFlowService {
 
-    private final DraftService draftService;
+    private final DocumentService documentService;
     private final ApprovalService approvalService;
     private final ReviewService reviewService;
     private final LineService lineService;
 
     public ApprovalResult escalate(ReviewAndApprovalDto dto, ApprovalUser requester) {
-        long draftId = draft(new DraftDto(), requester);
-        escalateReview(dto.forReview(), requester);
-        escalateApproval(dto.forApproval(), requester);
-        return ApprovalResult.escalated(draftId);
+        DocumentDto documentDto = dto.getDocumentDto();
+        long documentId = documentService.write(documentDto.toEntity());
+        escalateReview(dto.getReviewDto(), requester);
+        escalateApproval(dto.getApprovalDto(), requester);
+        return ApprovalResult.escalated(documentId);
     }
 
     public ApprovalResult escalate(ApprovalDto approvalDto, ApprovalUser requester) {
-        long draftId = draft(new DraftDto(), requester);
-        Approval approval = Approval.escalate(approvalDto);
-        approvalService.escalate(approval);
-
-        long id = approval.id();
-        ApprovalLine approvalLine = new ApprovalLine(id, approvalDto.steps());
-        lineService.create(approvalLine);
-        return ApprovalResult.escalated(draftId);
+        DocumentDto documentDto = approvalDto.getDocumentDto();
+        long documentId = documentService.write(documentDto.toEntity());
+        escalateApproval(approvalDto, requester);
+        return ApprovalResult.escalated(documentId);
     }
 
     public ApprovalResult escalate(ReviewDto reviewDto, ApprovalUser requester) {
-        long draftId = draft(new DraftDto(), requester);
-        Review review = Review.escalate(reviewDto);
-        reviewService.escalate(review);
+        DocumentDto documentDto = reviewDto.getDocumentDto();
+        long documentId = documentService.write(documentDto.toEntity());
+        escalateReview(reviewDto, requester);
+        return ApprovalResult.escalated(documentId);
+    }
 
-        Set<ReviewStep> steps = reviewDto.steps();
-        ReviewLine reviewLine = new ReviewLine(review.id(), steps);
-        lineService.create(reviewLine);
-        return ApprovalResult.escalated(draftId);
+    public ApprovalResult cancel(DocumentDto documentDto, ApprovalUser requester) {
+        documentService.cancel(documentDto);
+        return ApprovalResult.canceled(documentDto.getId());
     }
 
     public ApprovalResult approve(long id, ApprovalUser user) {
         ApprovalLine line = new ApprovalLine(id, lineService.findByApproval(id));
-        ApproveEvent event = lineService.approve(line);
+        ApproveEvent event = lineService.approve(line, user);
 
         approvalService.approve(id, event);
         return new ApprovalResult(id, event.isApproved());
@@ -75,7 +68,7 @@ public class ApprovalFlowService {
 
     public ApprovalResult rejectApproval(long id, ApprovalUser user) {
         ApprovalLine line = new ApprovalLine(id, lineService.findByApproval(id));
-        RejectEvent event = lineService.reject(line);
+        RejectEvent event = lineService.reject(line, user);
 
         approvalService.reject(id, event);
         return new ApprovalResult(id, event.isRejected());
@@ -97,12 +90,8 @@ public class ApprovalFlowService {
         return new ApprovalResult(id, event.isRejected());
     }
 
-    private long draft(DraftDto dto, ApprovalUser requester) {
-        return draftService.escalate(dto);
-    }
-
     private void escalateApproval(ApprovalDto approvalDto, ApprovalUser requester) {
-        Approval approval = Approval.escalate(approvalDto);
+        Approval approval = Approval.escalate(approvalDto, requester);
         approvalService.escalate(approval);
 
         long id = approval.id();
@@ -111,7 +100,7 @@ public class ApprovalFlowService {
     }
 
     private void escalateReview(ReviewDto reviewDto, ApprovalUser requester) {
-        Review review = Review.escalate(reviewDto);
+        Review review = Review.escalate(reviewDto, requester);
         reviewService.escalate(review);
 
         Set<ReviewStep> steps = reviewDto.steps();

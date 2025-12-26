@@ -21,10 +21,12 @@ public interface LineService {
 
     void create(ReviewLine line);
 
-    ApprovalEvent approve(ApprovalLine line);
+    ApprovalEvent approve(ApprovalLine line, ApprovalUser user);
 
-    ApprovalEvent reject(ApprovalLine line);
+    ApprovalEvent reject(ApprovalLine line, ApprovalUser user);
 
-    ApprovalEvent review(ReviewLine line, ApprovalUser reviewer);
+    ApprovalEvent review(ReviewLine line, ApprovalUser user);
+
+    ApprovalEvent reject(ReviewLine line, ApprovalUser user);
 
 }

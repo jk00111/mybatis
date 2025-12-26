@@ -1,14 +1,11 @@
 package com.example.approval.line.entity;
 
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
 import com.example.approval.vo.ApprovalUser;
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ReviewLine implements Iterable<ReviewStep> {

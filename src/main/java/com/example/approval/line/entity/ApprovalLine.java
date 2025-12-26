@@ -1,6 +1,6 @@
 package com.example.approval.line.entity;
 
-import com.example.approval.enums.StepStatus;
+import com.example.approval.line.enums.StepStatus;
 import com.example.approval.line.policy.ApprovalPolicy;
 import com.example.approval.line.policy.DefaultApprovalPolicy;
 import com.example.approval.vo.ApprovalUser;
@@ -9,9 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 
 
-/**
- * 승인 방식을 결정하는 것은 라인의 책임?
- * */
 public class ApprovalLine implements Iterable<ApprovalStep> {
 
     private final long approvalId;
@@ -52,23 +49,31 @@ public class ApprovalLine implements Iterable<ApprovalStep> {
         return this.current < steps.size() + 1;
     }
 
+    /**
+     * 결재 방식 합성 + 위임 vs Line의 다형성
+     * 변경되는 것과 변경 되지 않는것 -> 라인의 행동이 바뀔 가능성이 있는가??
+     * */
     public void approve(ApprovalUser approver) {
-        policy.submit();
+        policy.apply(this, approver);
+    }
+
+    public List<ApprovalStep> getUpdated() {
+        return steps.stream().filter(ProcessStep::isUpdated).toList();
     }
 
     public boolean isApproved() {
         return steps.stream()
-                .allMatch(v -> v.status().equals(StepStatus.APPROVED));
+                .noneMatch(v -> StepStatus.WAITING.equals(v.status()));
     }
 
     public boolean isRejected() {
         return steps.stream()
-                .anyMatch(v -> v.status().equals(StepStatus.REJECTED));
+                .anyMatch(v -> StepStatus.REJECTED.equals(v.status()));
     }
 
     private int current() {
         ApprovalStep current = steps.stream()
-                .filter(v -> v.status().equals(StepStatus.WAITING))
+                .filter(v -> StepStatus.WAITING.equals(v.status()))
                 .findFirst()
                 .orElseThrow();
         return steps.indexOf(current);

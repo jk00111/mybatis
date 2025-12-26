@@ -1,7 +1,7 @@
 package com.example.approval.review.entity;
 
-import com.example.approval.dto.ReviewDto;
-import com.example.approval.enums.ReviewStatus;
+import com.example.approval.review.dto.ReviewDto;
+import com.example.approval.review.enums.ReviewStatus;
 import com.example.approval.event.CancelEvent;
 import com.example.approval.event.RejectEvent;
 import com.example.approval.event.ReviewEvent;
@@ -20,7 +20,7 @@ public class Review {
         return id;
     }
 
-    public static Review escalate(ReviewDto reviewDto) {
+    public static Review escalate(ReviewDto reviewDto, ApprovalUser requester) {
         return new Review();
     }
 
